@@ -1,0 +1,44 @@
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.container__80 {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.df {
+    display: flex;
+}
+
+.df_jcc {
+    display: flex;
+    justify-content: center;
+}
+
+.df_jcsb {
+    display: flex;
+    justify-content: space-between;
+}
+
+.df_jcsa {
+    display: flex;
+    justify-content: space-around;
+}
+
+.df_jcse {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.df_jcc_ai {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.df_ai {
+    display: flex;
+    align-items: center;
+}
