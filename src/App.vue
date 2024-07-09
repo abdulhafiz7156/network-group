@@ -1,104 +1,67 @@
 <script>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import './style.css';
-import { Scrollbar, Pagination, Navigation } from 'swiper/modules';
+import { ref, computed, onMounted } from 'vue';
 
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
   setup() {
-    return {
-      timelines: [
-        {
-          id: 1,
-          img: 'ng-logo.png', // name of image
-          imgAlt: "NG logo", // you need to write there what is img
-          title: 'Lift off',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2019/01'
-        },
-        {
-          id: 2,
-          img: '',
-          imgAlt: "NG logo",
-          title: 'Lofi Uppdate',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2019/05'
-        },
-        {
-          id: 3,
-          img: '',
-          imgAlt: "NG logo",
-          title: '+5',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2020/02'
-        },
-        {
-          id: 4,
-          img: 'ng-logo.png',
-          imgAlt: "NG logo",
-          title: 'Lift off',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2020/06'
-        },
-        {
-          id: 5,
-          img: '',
-          imgAlt: "NG logo",
-          title: 'Lift off',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2024/01'
-        },
-        {
-          id: 6,
-          img: '',
-          imgAlt: "NG logo",
-          title: 'Lift off',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2023/01'
-        },
-        {
-          id: 7,
-          img: '',
-          imgAlt: "NG logo",
-          title: 'Lift off',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2024/01'
-        },
-        {
-          id: 8,
-          img: '',
-          imgAlt: "NG logo",
-          title: 'Lift off',
-          text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.',
-          data: '2025/01'
-        },
-      ],
-      modules: [Scrollbar, Pagination, Navigation],
-      swiperOptions: {
-        slidesPerView: 2,
-        spaceBetween: 30,
-        scrollbar: {
-          el: '.swiper-scrollbar',
-          draggable: true,
-          hide: false,  // Показать полосу прокрутки всегда
-        },
+    const timelines = ref([
+      { id: 1, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/01' },
+      { id: 2, img: '', imgAlt: 'NG logo', title: 'Lofi Uppdate', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/05' },
+      { id: 3, img: '', imgAlt: 'NG logo', title: '+5', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/02' },
+      { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
+      { id: 5, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2024/01' },
+      { id: 6, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2023/01' },
+      { id: 7, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2024/01' },
+      { id: 8, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2025/01' },
+    ]);
 
-        loop: false,  // Отключаем бесконечную прокрутку
-      },
+    const firstYear = ref(null);
+    const lastYear = ref(null);
+    const firstDataOfYear = ref(null);
+
+    // Фильтрация cards чтобы показывалось от старых к новым
+    const filteredTimelines = computed(() => {
+      return timelines.value.sort((a, b) => new Date(a.data) - new Date(b.data));
+    });
+
+    const extractYears = () => {
+      // нахождение самого старого и форматирование
+      firstYear.value = filteredTimelines.value[0].data.split('/')[0];
+      // нахождение самого нового и форматирование
+      lastYear.value = filteredTimelines.value[filteredTimelines.value.length - 1].data.split('/')[0];
+
+
+
+      const monthsByYear = {};
+
+      // Группировка по годам и нахождение первого месяца для каждого года
+      filteredTimelines.value.forEach((timeline) => {
+        const [year, month] = timeline.data.split('/');
+        const formattedDate = `${year}/${month.padStart(2, '0')}`;
+
+        if (!monthsByYear[year]) {
+          monthsByYear[year] = formattedDate;
+        } else if (month < monthsByYear[year].split('/')[1]) {
+          monthsByYear[year] = formattedDate;
+        }
+      });
+
+      firstDataOfYear.value = monthsByYear;
+      console.log(monthsByYear);
+    };
+
+    // Автоматический запуск функции при монтировании компонента
+    onMounted(() => {
+      extractYears();
+    });
+
+    return {
+      timelines,
+      firstYear,
+      lastYear,
+      filteredTimelines,
     };
   },
-  computed: {
-    filteredTimelines() {
-      return this.timelines.sort((a, b) => new Date(a.data) - new Date(b.data));
-    }
-  }
 };
 </script>
 <template>
@@ -186,18 +149,19 @@ export default {
           <h3>Таймлайн_</h3>
         </div>
         <div class="third-block__cards">
-          <Swiper :modules="modules" :options="swiperOptions">
-            <SwiperSlide class="third-block__card" v-for="card in filteredTimelines" :key="card.id">
+          <div class="third-block__mini-divs">
+            <div class="third-block__card__mini-div">Start time · {{ this.firstYear }}</div>
+            <div class="third-block__card__mini-div third-block__card__mini-div2">{{this.firstYear}} — {{ this.lastYear }}</div>
+          </div>
+          <div class="third-block__cards-parent df">
+            <div class="third-block__card" v-for="card in filteredTimelines" :key="card.id">
+<!--              <div class="third-block__card__mini-div third-block">{{ this.firstYear }}</div>-->
               <img v-if="card.img" :src="'src/assets/img/' + card.img" :alt="card.imgAlt">
               <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
               <p>{{ card.text }}</p>
               <span>{{ card.data }}</span>
-            </SwiperSlide>
-            <!-- Pagination -->
-            <div class="swiper-pagination"></div>
-            <!-- Scrollbar -->
-            <div class="swiper-scrollbar"></div>
-          </Swiper>
+            </div>
+          </div>
         </div>
       </section>
       <section></section>

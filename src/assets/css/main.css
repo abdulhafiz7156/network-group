@@ -94,15 +94,17 @@
     top: -20px;
     left: -2px;
     background: #1FA95E;
-    font-size: 14px;
-    border-radius: 3px;
+    font-size: 11px;
+    /* border-radius: 3px; */
     color: #E4FF97;
     width: 97px;
-    height: 20px;
+    height: 21px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'JetBrains Mono';
+    font-weight: 300;
 }
 
 .white-card {
@@ -220,21 +222,7 @@
     margin-bottom: 100px;
 }
 
-.swiper-scrollbar {
-    position: absolute !important;
-    left: 0 !important;
-    bottom: 0 !important;
-    z-index: 50 !important;
-    height: 4px !important;
-    width: 100% !important;
-    background: rgb(255, 12, 12) !important;
-}
 
-.swiper-scrollbar-drag {
-    height: 100% !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    border-radius: 2px !important;
-}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -248,4 +236,39 @@
     border-radius: 2px;
     background: #EDF3FD1A;
     padding: 10px;
+}
+
+
+.third-block__mini-divs {
+    position: relative;
+}
+
+.third-block__card__mini-div {
+    position: absolute;
+    top: -20px;
+    left: -2px;
+    background: #6054FF;
+    font-size: 11px;
+    border-radius: 3px;
+    color: #EDF3FD;
+    padding: 0 8px;
+    height: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono';
+    font-weight: 300;
+}
+
+.third-block__card__mini-div2 {
+    right: 0;
+    left: auto;
+    padding: 0 5px;
+    font-size: 11px;
+}
+
+.third-block__cards-parent {
+    overflow-x: scroll;
+    margin-bottom: 220px;
 }
