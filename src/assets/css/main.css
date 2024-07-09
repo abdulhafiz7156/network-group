@@ -292,8 +292,8 @@
 
 .fourth-block__map__nav button{
     width: 115px;
-    height: 32px;
-    padding: 5px 10px 0px 15px;
+    height: 34px;
+    padding: 3px 10px 0px 15px;
     border-radius: 2px 0px 0px 2px;
     background: transparent;
     font-family: JetBrains Mono;
@@ -321,7 +321,7 @@
 }
 
 .fourth-block__map {
-    padding: 72px 40px;
+    padding: 68px 40px;
 }
 
 .fourth-block__map img {
@@ -333,12 +333,71 @@
 }
 
 .fourth-block__map__text {
-    position: relative;
+    position: absolute;
     background: #050B16;
     width: 219px;
-    height: 68px;
+    height: 55px;
     padding: 18px 30px 20px 30px;
     border: 1px solid #242C39;
     border-radius: 2px;
-    top: -20px;
+    top: 28%;
+    left: 71%;
+}
+
+.fourth-block__map__text p{
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    top: 30%;
+}
+
+.fourth-block__map__mini-div {
+    background-color: var(--primary-color);
+    position: absolute;
+    top: -37px;
+    left: -29px;
+    border-radius: 2px 2px 0 0;
+    color: #EDF3FD;
+    padding: 0 8px;
+    height: 20px;
+    width: 120px;
+    text-align: center;
+    display: flex;
+    border: 1px solid #050B16;
+    align-items: center;
+    font-size: 13px;
+    font-family: 'JetBrains Mono';
+    font-weight: 300;
+}
+
+
+.tooltip {
+    position: absolute;
+    color: white;
+    border-radius: 3px;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    white-space: nowrap;
+    text-align: center;
+    width: auto;
+    padding: 0px 30px;
+}
+
+.city {
+    cursor: pointer;
+}
+
+.fourth-block__map {
+    position: relative;
+}
+
+.fourth-block__map__tooltip__mini-div {
+    top: -25px;
+    left: -7px;
+}
+
+.fourth-block__map__text img {
+    width: 14px;
+    height: 17px;
+    margin-left: 12px;
 }

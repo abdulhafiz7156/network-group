@@ -15,10 +15,33 @@ export default {
       { id: 8, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2025/01' },
     ]);
 
+
+    const userPoints = ref([
+      { city: 'Москва', employees: '6', x: 580, y: 140 },
+      { city: 'Москва', employees: '5', x: 500, y: 140 },
+      { city: 'Москва', employees: '3', x: 560, y: 140 },
+      { city: 'Москва', employees: '3', x: 580, y: 140 },
+      { city: 'Москва', employees: '3', x: 590, y: 140 },
+      { city: 'Москва', employees: '3', x: 600, y: 150 },
+      { city: 'Москва', employees: '3', x: 520, y: 140 },
+      { city: 'Москва', employees: '3', x: 530, y: 100 },
+      { city: 'Москва', employees: '3', x: 560, y: 120 },
+      { city: 'Москва', employees: '8', x: 540, y: 150 },
+      { city: 'Москва', employees: '2', x: 580, y: 140 },
+      { city: 'Москва', employees: '1', x: 580, y: 140 },
+      { city: 'Москва', employees: '3', x: 580, y: 200 },
+      { city: 'Москва', employees: '3', x: 560, y: 180 },
+      { city: 'Москва', employees: '3', x: 570, y: 160 },
+      { city: 'Москва', employees: '3', x: 600, y: 170 },
+      // Добавьте другие точки здесь
+    ]);
+
     const firstYear = ref(null);
     const lastYear = ref(null);
     const firstDataOfYear = ref(null);
-    const mapUsers = ref(true)
+    const mapUsers = ref(false)
+    const activePoint = ref(null);
+
 
     // Фильтрация cards чтобы показывалось от старых к новым
     const filteredTimelines = computed(() => {
@@ -51,6 +74,29 @@ export default {
       console.log(monthsByYear);
     };
 
+
+    const tooltip = ref({
+      visible: false,
+      city: '',
+      employees: '',
+      x: 0,
+      y: 0
+    });
+
+    const showTooltip = (event, point) => {
+      tooltip.value.city = point.city;
+      tooltip.value.employees = point.employees;
+      tooltip.value.x = point.x + 107;
+      tooltip.value.y = point.y + 105;
+      tooltip.value.visible = true;
+      activePoint.value = point; // Устанавливаем активный круг
+      console.log(event, point)
+    };
+
+    const hideTooltip = () => {
+      tooltip.value.visible = false;
+      activePoint.value = null; // Сбрасываем активный круг
+    };
     // Автоматический запуск функции при монтировании компонента
     onMounted(() => {
       extractYears();
@@ -61,7 +107,12 @@ export default {
       firstYear,
       lastYear,
       filteredTimelines,
-      mapUsers
+      mapUsers,
+      userPoints,
+      tooltip,
+      showTooltip,
+      hideTooltip,
+      activePoint
     };
   },
 };
@@ -182,15 +233,33 @@ export default {
               </div>
             </div>
             <div class="fourth-block__map">
-              <div v-if="mapUsers">
-                <img src="./assets/img/map.png" alt="">
-                <div class="fourth-block__map__text">
-                  <div>x0521 · y2715</div>
-                  <p>Москва · 211 701</p>
+              <div v-if="!mapUsers">
+                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map.svg" x="0" y="0" width="1000" height="500"/>
+                  <circle
+                      v-for="(point, index) in userPoints"
+                      :key="index"
+                      :cx="point.x"
+                      :cy="point.y"
+                      :r=point.employees
+                      :fill="activePoint === point ? '#6054FF' : 'white'"
+                      class="city"
+                      @click="showTooltip($event, point)"
+                  />
+                </svg>
+                <div class="tooltip fourth-block__map__text" v-if="tooltip.visible" :style="{ left: tooltip.x + 'px', top: tooltip.y + 'px'}">
+                  <div class="fourth-block__map__mini-div fourth-block__map__tooltip__mini-div">x0521 · y2715</div>
+                  <div class="df_jcc_ai">
+                    {{ tooltip.city }} · {{ tooltip.employees }} <img src="./assets/img/user.svg" alt="User icon">
+                  </div>
                 </div>
               </div>
-              <div v-if="!mapUsers">
-                <img src="./assets/img/map.png" alt="">
+              <div v-else>
+                <img src="./assets/img/map.png" alt="Picture of map">
+                <div class="fourth-block__map__text">
+                  <div class="fourth-block__map__mini-div">x0521 · y2715</div>
+                  <p>Москва · 211 701</p>
+                </div>
               </div>
             </div>
           </div>
