@@ -272,3 +272,73 @@
     overflow-x: scroll;
     margin-bottom: 220px;
 }
+
+.third-block {
+    height: 505px;
+}
+
+.fourth-block__maps {
+    border: 1px solid #242C39;
+    margin-top: 54px;
+}
+
+.fourth-block__maps{
+    height: 1027px;
+}
+
+.fourth-block__buttons {
+    padding: 19px;
+}
+
+.fourth-block__map__nav button{
+    width: 115px;
+    height: 32px;
+    padding: 5px 10px 0px 15px;
+    border-radius: 2px 0px 0px 2px;
+    background: transparent;
+    font-family: JetBrains Mono;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 21px;
+    border: 1px solid #242C39;
+}
+
+.fourth-block__map__button-active{
+    background-color: var(--text-color) !important;
+    color: var(--second-text-color) !important;
+}
+
+.fourth-block__map__nav__text {
+    width: 384px;
+}
+
+.fourth-block__map__nav__text h3 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
+    border: 1px solid #242C39;
+    padding: 10px 22px;
+}
+
+.fourth-block__map {
+    padding: 72px 40px;
+}
+
+.fourth-block__map img {
+    width: 1070px;
+}
+
+.fourth-block__map div:first-child {
+    position: relative;
+}
+
+.fourth-block__map__text {
+    position: relative;
+    background: #050B16;
+    width: 219px;
+    height: 68px;
+    padding: 18px 30px 20px 30px;
+    border: 1px solid #242C39;
+    border-radius: 2px;
+    top: -20px;
+}

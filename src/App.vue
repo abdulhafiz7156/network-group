@@ -18,6 +18,7 @@ export default {
     const firstYear = ref(null);
     const lastYear = ref(null);
     const firstDataOfYear = ref(null);
+    const mapUsers = ref(true)
 
     // Фильтрация cards чтобы показывалось от старых к новым
     const filteredTimelines = computed(() => {
@@ -60,6 +61,7 @@ export default {
       firstYear,
       lastYear,
       filteredTimelines,
+      mapUsers
     };
   },
 };
@@ -164,7 +166,37 @@ export default {
           </div>
         </div>
       </section>
-      <section></section>
+      <section class="fourth-block container__80">
+        <div class="blocks__title">
+          <h3>Цифры и преимущества_</h3>
+        </div>
+        <div class="fourth-block__map-numbers">
+          <div class="fourth-block__maps">
+            <div class="fourth-block__map__nav df_jcsb">
+              <div class="fourth-block__buttons df">
+                <button @click="mapUsers = true" :class="{ 'fourth-block__map__button-active': this.mapUsers}">Пользователи</button>
+                <button @click="mapUsers = false" :class="{ 'fourth-block__map__button-active': !this.mapUsers}">Сотрудники</button>
+              </div>
+              <div class="fourth-block__map__nav__text">
+                <h3>Работаем в России и за рубежом!</h3>
+              </div>
+            </div>
+            <div class="fourth-block__map">
+              <div v-if="mapUsers">
+                <img src="./assets/img/map.png" alt="">
+                <div class="fourth-block__map__text">
+                  <div>x0521 · y2715</div>
+                  <p>Москва · 211 701</p>
+                </div>
+              </div>
+              <div v-if="!mapUsers">
+                <img src="./assets/img/map.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="fourth-block__numbers"></div>
+        </div>
+      </section>
       <section></section>
     </div>
   </main>
