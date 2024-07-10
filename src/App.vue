@@ -222,6 +222,7 @@ export default {
           <h3>Цифры и преимущества_</h3>
         </div>
         <div class="fourth-block__map-numbers">
+          <div class="fourth-block__map-numbers__mini-div">Network Maps</div>
           <div class="fourth-block__maps">
             <div class="fourth-block__map__nav df_jcsb">
               <div class="fourth-block__buttons df">
@@ -229,6 +230,7 @@ export default {
                 <button @click="mapUsers = false" :class="{ 'fourth-block__map__button-active': !this.mapUsers}">Сотрудники</button>
               </div>
               <div class="fourth-block__map__nav__text">
+                <div class="fourth-block__map-numbers__mini-div fourth-block__map__nav__mini-div">#everywhere</div>
                 <h3>Работаем в России и за рубежом!</h3>
               </div>
             </div>
@@ -236,16 +238,27 @@ export default {
               <div v-if="!mapUsers">
                 <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
                   <image href="./assets/img/map.svg" x="0" y="0" width="1000" height="500"/>
-                  <circle
-                      v-for="(point, index) in userPoints"
-                      :key="index"
-                      :cx="point.x"
-                      :cy="point.y"
-                      :r=point.employees
-                      :fill="activePoint === point ? '#6054FF' : 'white'"
-                      class="city"
-                      @click="showTooltip($event, point)"
-                  />
+                  <g v-for="(point, index) in userPoints" :key="index">
+                    <!-- Большой круг для захвата событий -->
+                    <circle
+                        :cx="point.x"
+                        :cy="point.y"
+                        :r="10"
+                    fill="transparent"
+                    @mouseenter="showTooltip($event, point)"
+                    @mouseleave="hideTooltip"
+                    />
+                    <!-- Маленький круг для отображения -->
+                    <circle
+                        :cx="point.x"
+                        :cy="point.y"
+                        :r="point.employees"
+                        :fill="activePoint === point ? '#6054FF' : 'white'"
+                        class="city"
+                        @mouseenter="showTooltip($event, point)"
+                        @mouseleave="hideTooltip"
+                    />
+                  </g>
                 </svg>
                 <div class="tooltip fourth-block__map__text" v-if="tooltip.visible" :style="{ left: tooltip.x + 'px', top: tooltip.y + 'px'}">
                   <div class="fourth-block__map__mini-div fourth-block__map__tooltip__mini-div">x0521 · y2715</div>
@@ -254,11 +267,31 @@ export default {
                   </div>
                 </div>
               </div>
+
               <div v-else>
                 <img src="./assets/img/map.png" alt="Picture of map">
                 <div class="fourth-block__map__text">
                   <div class="fourth-block__map__mini-div">x0521 · y2715</div>
                   <p>Москва · 211 701</p>
+                </div>
+              </div>
+            </div>
+            <div class="fourth-block__numbers">
+              <div class="df">
+                <div class="fourth-block__numbers__card">
+                  <div class="fourth-block__numbers__card__mini-div">folder/team</div>
+                  <h3>40</h3>
+                  <p>Сотрудников в команде</p>
+                </div>
+                <div class="fourth-block__numbers__card">
+                  <div class="fourth-block__numbers__card__mini-div">stats/downloads</div>
+                  <h3>2 000 000</h3>
+                  <p>Скачиваний у приложений</p>
+                </div>
+                <div class="fourth-block__numbers__card">
+                  <div class="fourth-block__numbers__card__mini-div">time/1:06</div>
+                  <h3>4 лет</h3>
+                  <p>Работаем больше возможного</p>
                 </div>
               </div>
             </div>

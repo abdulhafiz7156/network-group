@@ -69,18 +69,15 @@
 
 .second-block__cards {
     margin-top: 54px;
+    gap: 2px;
 }
 
 .second-block__card {
     border: 1px solid #1FA95E;
     width: 286px;
     min-height: 498px;
-    gap: 10px;
     border-radius: 0px 2px 2px 2px;
-    border: 1px 0px 0px 0px;
-    opacity: 0px;
     position: relative;
-    margin-right: 2px;
 }
 
 .second-block__card__texts img{
@@ -310,13 +307,15 @@
 
 .fourth-block__map__nav__text {
     width: 384px;
+    position: relative;
 }
 
 .fourth-block__map__nav__text h3 {
     font-size: 16px;
     font-weight: 500;
     line-height: 30px;
-    border: 1px solid #242C39;
+    border-bottom: 1px solid #242C39;
+    border-left: 1px solid #242C39;
     padding: 10px 22px;
 }
 
@@ -326,6 +325,7 @@
 
 .fourth-block__map img {
     width: 1070px;
+    height: 535px;
 }
 
 .fourth-block__map div:first-child {
@@ -392,12 +392,75 @@
 }
 
 .fourth-block__map__tooltip__mini-div {
-    top: -25px;
-    left: -7px;
+    top: -20px;
+    left: -30px;
 }
 
 .fourth-block__map__text img {
     width: 14px;
     height: 17px;
     margin-left: 12px;
+}
+
+.fourth-block__numbers__card {
+    border: 1px solid #242C39;
+    padding: 28px 23px 51px;
+    width: 480px;
+    margin-top: 69px;
+    height: 155px;
+    position: relative;
+}
+
+.fourth-block__numbers__card h3{
+    font-size: 43px;
+    font-weight: 600;
+    line-height: 54px;
+    margin-bottom: 10px;
+}
+
+.tooltip .df_jcc_ai {
+    position: absolute;
+    top: 31%;
+    left: 22%;
+}
+
+.fourth-block__numbers__card__mini-div {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    height: 16px;
+    padding: 0 5px 0 5px;
+    gap: 10px;
+    border-radius: 2px 2px 0 0;
+    font-family: JetBrains Mono;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 21px;
+    color: var(--second-text-color);
+    background-color: var(--text-color);
+}
+
+.fourth-block__map-numbers {
+    position: relative;
+}
+
+.fourth-block__map-numbers__mini-div {
+    position: absolute;
+    top: -1.8%;
+    left: 0;
+    height: 19px;
+    padding: 0 5px 0 5px;
+    gap: 10px;
+    border-radius: 2px 2px 0 0;
+    font-family: JetBrains Mono;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 21px;
+    color: var(--second-text-color);
+    background-color: var(--text-color);
+}
+
+
+.fourth-block__map__nav__mini-div {
+    top: -27%;
 }
