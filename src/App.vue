@@ -20,17 +20,14 @@ export default {
       { city: 'Москва', employees: '6', x: 580, y: 140 },
       { city: 'Москва', employees: '5', x: 500, y: 140 },
       { city: 'Москва', employees: '3', x: 560, y: 140 },
-      { city: 'Москва', employees: '3', x: 580, y: 140 },
+      { city: 'Москва', employees: '3', x: 580, y: 210 },
       { city: 'Москва', employees: '3', x: 590, y: 140 },
       { city: 'Москва', employees: '3', x: 600, y: 150 },
-      { city: 'Москва', employees: '3', x: 520, y: 140 },
       { city: 'Москва', employees: '3', x: 530, y: 100 },
       { city: 'Москва', employees: '3', x: 560, y: 120 },
       { city: 'Москва', employees: '8', x: 540, y: 150 },
-      { city: 'Москва', employees: '2', x: 580, y: 140 },
-      { city: 'Москва', employees: '1', x: 580, y: 140 },
       { city: 'Москва', employees: '3', x: 580, y: 200 },
-      { city: 'Москва', employees: '3', x: 560, y: 180 },
+      { city: 'Москва', employees: '3', x: 610, y: 180 },
       { city: 'Москва', employees: '3', x: 570, y: 160 },
       { city: 'Москва', employees: '3', x: 600, y: 170 },
       // Добавьте другие точки здесь
@@ -267,7 +264,6 @@ export default {
                   </div>
                 </div>
               </div>
-
               <div v-else>
                 <img src="./assets/img/map.png" alt="Picture of map">
                 <div class="fourth-block__map__text">
@@ -296,7 +292,50 @@ export default {
               </div>
             </div>
           </div>
-          <div class="fourth-block__numbers"></div>
+          <div class="fourth-block__advantages">
+            <div class="fourth-block__advantages-grid">
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/home-icon.svg" alt="Icon">
+                <h3>Удалёнка или офис</h3>
+                <p>Работай из дома, кафе, офиса, откуда угодно</p>
+              </div>
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/circle-icon.svg" alt="Icon">
+                <h3>Буквально откуда угодно</h3>
+                <p>Работаем с сотрудниками не только из России, но и со всего мира, оплата придёт в любую точку Земли</p>
+              </div>
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/user-icon.svg" alt="Icon">
+                <h3>Кстати об оплате</h3>
+                <p>Еженедельно и никаких задержек</p>
+              </div>
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/home2-icon.svg" alt="Icon">
+                <h3>Офис в центре Санкт-Петербурге</h3>
+                <p>Недалеко от метро</p>
+              </div>
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/building-material-icon.svg" alt="Icon">
+                <h3>Смотрим на твои реальные навыки</h3>
+                <p>А не на высшее образование</p>
+              </div>
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/ladder-icon.svg" alt="Icon">
+                <h3>Постоянно развиваемся</h3>
+                <p>Ты сможешь расти вместе с нами как в карьере, так и в профессии</p>
+              </div>
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/robot-icon.svg" alt="Icon">
+                <h3>Работаем с иностранным софтом и ИИ.</h3>
+                <p>Еженедельно и никаких задержек</p>
+              </div>
+              <div class="fourth-block__advantages__card">
+                <img src="./assets/img/cube-icon.svg" alt="Icon">
+                <h3>Не аутсорс компания</h3>
+                <p>Ты сможешь расти вместе с нами как в карьере, так и в профессии</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section></section>
