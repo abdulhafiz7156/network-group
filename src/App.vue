@@ -1,6 +1,6 @@
 <script>
 import './style.css';
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, reactive, watch } from 'vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/scrollbar";
@@ -24,7 +24,6 @@ export default {
       { id: 8, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2025/01' },
     ]);
 
-
     const userPoints = ref([
       { city: 'Москва', employees: '6', x: 580, y: 140 },
       { city: 'Москва', employees: '5', x: 500, y: 140 },
@@ -42,11 +41,119 @@ export default {
       // Добавьте другие точки здесь
     ]);
 
+    const vacancies = ref([
+      {
+        id: 1,
+        title: "Дизигнер",
+        description: "Таким образом реализация намеченных плановых заданий",
+        location: "Москве",
+        type: "Фултайм",
+        experience: "Опыт от 1 года",
+        requirementsTitle: "Вы нам подходите, если",
+        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirements: [
+          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
+          "Есть опыт работы с ReShade и/или ENB;",
+          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
+          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+        ],
+        buttonText: "Написать сейчас"
+      },
+      {
+        id: 2,
+        title: "Контент Манагер",
+        description: "Таким образом реализация намеченных плановых заданий",
+        location: "Москве",
+        type: "Фултайм",
+        experience: "Опыт от 1 года",
+        requirementsTitle: "Вы нам подходите, если",
+        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirements: [
+          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
+          "Есть опыт работы с ReShade и/или ENB;",
+          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
+          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+        ],
+        buttonText: "Написать сейчас"
+      },
+      {
+        id: 3,
+        title: "Копирайтер",
+        description: "Таким образом реализация намеченных плановых заданий",
+        location: "Москве",
+        type: "Фултайм",
+        experience: "Опыт от 1 года",
+        requirementsTitle: "Вы нам подходите, если",
+        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirements: [
+          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
+          "Есть опыт работы с ReShade и/или ENB;",
+          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
+          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+        ],
+        buttonText: "Написать сейчас"
+      },
+      {
+        id: 4,
+        title: "3D Моделлер",
+        description: "Таким образом реализация намеченных плановых заданий",
+        location: "Москве",
+        type: "Фултайм",
+        experience: "Опыт от 1 года",
+        requirementsTitle: "Вы нам подходите, если",
+        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirements: [
+          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
+          "Есть опыт работы с ReShade и/или ENB;",
+          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
+          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+        ],
+        buttonText: "Написать сейчас"
+      },
+      {
+        id: 5,
+        title: "Акционер",
+        description: "Таким образом реализация намеченных плановых заданий",
+        location: "Москве",
+        type: "Фултайм",
+        experience: "Опыт от 1 года",
+        requirementsTitle: "Вы нам подходите, если",
+        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirements: [
+          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
+          "Есть опыт работы с ReShade и/или ENB;",
+          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
+          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+        ],
+        buttonText: "Написать сейчас"
+      },
+      {
+        id: 6,
+        title: "Meta тестировщик",
+        description: "Таким образом реализация намеченных плановых заданий",
+        location: "Москве",
+        type: "Фултайм",
+        experience: "Опыт от 1 года",
+        requirementsTitle: "Вы нам подходите, если",
+        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirements: [
+          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
+          "Есть опыт работы с ReShade и/или ENB;",
+          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
+          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+        ],
+        buttonText: "Написать сейчас"
+      },
+    ])
+
     const firstYear = ref(null);
     const lastYear = ref(null);
     const firstDataOfYear = ref(null);
     const mapUsers = ref(false)
     const activePoint = ref(null);
+    const isSidebarOpen = ref(false);
+    const selectedVacancy = reactive({});
+    const sidebar = ref(null);
 
 
     // Фильтрация cards чтобы показывалось от старых к новым
@@ -103,10 +210,51 @@ export default {
       tooltip.value.visible = false;
       activePoint.value = null; // Сбрасываем активный круг
     };
-    // Автоматический запуск функции при монтировании компонента
+
+    const openSidebar = (card) => {
+      // Close any currently open sidebar first
+      if (isSidebarOpen.value) {
+        closeSidebar();
+      }
+
+      // Open the new sidebar
+      Object.assign(selectedVacancy, card);
+      isSidebarOpen.value = true;
+
+      // Add the click handler for outside clicks
+      document.addEventListener('click', handleClickOutside);
+    };
+
+    const closeSidebar = () => {
+      isSidebarOpen.value = false;
+      Object.keys(selectedVacancy).forEach(key => {
+        delete selectedVacancy[key];
+      });
+
+      // Remove the click handler for outside clicks
+      document.removeEventListener('click', handleClickOutside);
+    };
+
+    const handleClickOutside = (event) => {
+      if (sidebar.value && !sidebar.value.contains(event.target) && !event.target.closest('.vacancy-block-grid__card')) {
+        closeSidebar();
+      }
+    };
+
+    // Automatically run function when component is mounted
     onMounted(() => {
       extractYears();
+      document.addEventListener('click', handleClickOutside);
     });
+
+    watch(isSidebarOpen, (newVal) => {
+      if (newVal) {
+        document.addEventListener('click', handleClickOutside);
+      } else {
+        document.removeEventListener('click', handleClickOutside);
+      }
+    });
+
 
     return {
       timelines,
@@ -119,6 +267,12 @@ export default {
       showTooltip,
       hideTooltip,
       activePoint,
+      vacancies,
+      isSidebarOpen,
+      selectedVacancy,
+      openSidebar,
+      closeSidebar,
+      sidebar,
       modules: [Scrollbar, Navigation],
     };
   },
@@ -364,7 +518,34 @@ export default {
           </div>
         </div>
       </section>
-      <section></section>
+      <section class="vacancy-block container__80">
+        <div class="blocks__title">
+          <h3>Открытые вакансии_</h3>
+        </div>
+        <div class="vacancy-block-grid">
+          <div class="vacancy-block-grid__card" v-for="(card, id) in vacancies" :key="id" @click="openSidebar(card)">>
+            <div class="vacancy-block-grid__card__mini-div">folder/vacancies</div>
+            <h3>{{card.title}}</h3>
+            <p>{{card.description}}</p>
+            <div class="vacancy-block-grid__card__subtitles df">
+              <div>{{card.location}}</div>
+              <div>{{card.type}}</div>
+              <div>{{card.experience}}</div>
+            </div>
+          </div>
+        </div>
+        <div :class="['sidebar', { 'sidebar--open': isSidebarOpen }]" ref="sidebar">
+            <button class="sidebar__close-btn" @click="closeSidebar">
+              <img src="./assets/img/right-icon.png" alt="Right side icon">
+              <img src="./assets/img/right-icon.png" alt="Right side icon">
+            </button>
+            <h3>{{selectedVacancy.title}}</h3>
+            <p>{{selectedVacancy.description}}</p>
+            <div>{{selectedVacancy.location}}</div>
+            <div>{{selectedVacancy.type}}</div>
+            <div>{{selectedVacancy.experience}}</div>
+        </div>
+      </section>
     </div>
   </main>
 </template>
