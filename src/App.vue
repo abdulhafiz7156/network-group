@@ -1,8 +1,17 @@
 <script>
 import './style.css';
 import { ref, computed, onMounted } from 'vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/scrollbar";
+import "./style.css";
+import { Scrollbar, Navigation } from "swiper/modules";
 
 export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
   setup() {
     const timelines = ref([
       { id: 1, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/01' },
@@ -109,7 +118,8 @@ export default {
       tooltip,
       showTooltip,
       hideTooltip,
-      activePoint
+      activePoint,
+      modules: [Scrollbar, Navigation],
     };
   },
 };
@@ -204,13 +214,28 @@ export default {
             <div class="third-block__card__mini-div third-block__card__mini-div2">{{this.firstYear}} — {{ this.lastYear }}</div>
           </div>
           <div class="third-block__cards-parent df">
-            <div class="third-block__card" v-for="card in filteredTimelines" :key="card.id">
-<!--              <div class="third-block__card__mini-div third-block">{{ this.firstYear }}</div>-->
-              <img v-if="card.img" :src="'src/assets/img/' + card.img" :alt="card.imgAlt">
-              <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
-              <p>{{ card.text }}</p>
-              <span>{{ card.data }}</span>
-            </div>
+            <Swiper
+                :scrollbar="{
+                  el: '.swiper-scrollbar',
+                  draggable: true,
+                  hide: false,
+                }"
+                :navigation="{
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                }"
+                :modules="modules"
+                class="mySwiper">
+              <Swiper-slide class="third-block__card" v-for="card in filteredTimelines" :key="card.id">
+                <img v-if="card.img" :src="'src/assets/img/' + card.img" :alt="card.imgAlt">
+                <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
+                <p>{{ card.text }}</p>
+                <span>{{ card.data }}</span>
+              </Swiper-slide>
+              <div class="swiper-scrollbar"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </Swiper>
           </div>
         </div>
       </section>

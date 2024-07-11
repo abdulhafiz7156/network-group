@@ -539,3 +539,51 @@
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
 }
+
+.mySwiper {
+    height: 295px;
+}
+
+.swiper-scrollbar {
+    background-color: transparent;
+    border-radius: 0px;
+    /*width: 95% !important;*/
+    margin: 0 auto;
+}
+
+.swiper-scrollbar-horizontal {
+    background: transparent;
+    border: 1px solid #242c39;
+    height: 37px !important;
+}
+
+.swiper-scrollbar-drag {
+    border-radius: 2px !important;
+    background: #242c39 !important;
+    height: 30px !important;
+    margin: 3px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #242c39;
+    background-color: #fff;
+    border: 1px solid #242c39;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 93%;
+    transform: translateY(-50%);
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
