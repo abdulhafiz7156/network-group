@@ -277,9 +277,6 @@
     margin-top: 54px;
 }
 
-.fourth-block__maps{
-    height: 1027px;
-}
 
 .fourth-block__buttons {
     padding: 19px;
@@ -469,18 +466,19 @@
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 0px;
     max-width: 1400px;
+    margin-bottom: 200px;
 }
 
 .fourth-block__advantages__card {
     width: auto;
     height: 195px;
     padding: 30px 20px;
-    /*padding: 20px;*/
     border-radius: 2px 0 0 0;
     display: flex;
-    /*justify-content: center;*/
     flex-direction: column;
-    border: 1px solid #242C39;
+    outline: 1px solid #242C39; /* Используем outline вместо border */
+    margin: 1px 0 0 1px; /* Смещаем элемент, чтобы убрать удвоенные границы */
+    gap: 10px;
 }
 
 .fourth-block__advantages__card img{
@@ -492,27 +490,52 @@
     font-size: 22px;
     font-weight: 500;
     line-height: 28px;
-    margin: 8px 0 16px 0;
+    letter-spacing: 0.2px;
 }
 
 .fourth-block__advantages__card p {
     font-size: 16px;
     font-weight: 500;
-    line-height: 30px;
+    line-height: 28px;
 }
 
 .fourth-block__advantages-grid div:nth-child(3) {
-    height: 170px;
+    height: 166px;
 }
 
 .fourth-block__advantages-grid div:nth-child(4) {
-    height: 170px;
+    height: 166px;
+}
+
+.fourth-block__advantages-grid div:nth-child(5) {
+    height: 160px;
+}
+
+.fourth-block__advantages-grid div:nth-child(6) {
+    height: 160px;
 }
 
 .fourth-block__advantages-grid div:nth-child(7) {
-    height: 140px;
+    height: 172px;
 }
 
 .fourth-block__advantages-grid div:nth-child(8) {
-    height: 140px;
+    height: 172px;
+}
+
+.fourth-block__advantages {
+    margin-top: 35px;
+}
+
+.fourth-block__advantages__mini-div {
+    width: 130px;
+    padding: 0px 5px 0px 5px;
+    background-color: var(--text-color);
+    font-family: JetBrains Mono;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 21px;
+    color: var(--second-text-color);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }

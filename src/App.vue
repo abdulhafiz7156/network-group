@@ -293,6 +293,7 @@ export default {
             </div>
           </div>
           <div class="fourth-block__advantages">
+            <div class="fourth-block__advantages__mini-div">download/advantage</div>
             <div class="fourth-block__advantages-grid">
               <div class="fourth-block__advantages__card">
                 <img src="./assets/img/home-icon.svg" alt="Icon">
