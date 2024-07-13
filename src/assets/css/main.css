@@ -57,11 +57,21 @@
     margin-top: 237px;
 }
 
-.blocks__title  span{
+.blocks__title{
     font-size: clamp(1.75rem, 1.349rem + 1.69vw, 3.375rem);
     font-weight: 600;
     line-height: 54px;
 }
+
+.blocks__title .cursor {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background: black;
+    margin-left: 5px;
+    vertical-align: bottom;
+}
+
 
 .second-block__cards {
     margin-top: 68px;
@@ -83,8 +93,8 @@
 
 .card__mini-div {
     position: absolute;
-    top: -20px;
-    left: -2px;
+    top: -21px;
+    left: -1px;
     background: #1FA95E;
     font-size: 14px;
     padding: 0 5px;
@@ -621,7 +631,6 @@
 
 .vacancy-block-grid__card {
     border: 1px solid var(--second-text-color);
-    height: 215px;
     position: relative;
     padding: 30px;
     cursor: pointer;

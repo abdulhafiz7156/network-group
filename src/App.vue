@@ -8,8 +8,10 @@ import "./style.css";
 import { Scrollbar, Navigation } from "swiper/modules";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { TextPlugin } from 'gsap/TextPlugin';
 
-gsap.registerPlugin(ScrollTrigger);
+
+gsap.registerPlugin(ScrollTrigger,TextPlugin);
 
 export default {
   components: {
@@ -175,6 +177,7 @@ export default {
     const addTitleRef2 = ref(null);
     const addTitleRef3 = ref(null);
     const addTitleRef4 = ref(null);
+    const currentYear = ref(new Date().getFullYear());
 
     // Фильтрация cards чтобы показывалось от старых к новым
     const filteredTimelines = computed(() => {
@@ -259,47 +262,45 @@ export default {
       }
     };
 
-
-    const splitTextToSpans = (element) => {
-      const text = element.innerText;
-      element.innerHTML = '';
-      text.split('').forEach(char => {
-        const span = document.createElement('span');
-        span.innerText = char === ' ' ? '\u00A0' : char; // Replace space with a non-breaking space
-        element.appendChild(span);
+    const animateTitle = (element, newText) => {
+      gsap.to(element.querySelector('h3'), {
+        duration: 3,
+        text: newText,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reset',
+        },
+        onComplete: () => {
+          // Add cursor blink animation after the text animation completes
+          gsap.fromTo(
+              element.querySelector('.cursor'),
+              { opacity: 1 },
+              { opacity: 0, duration: 0.5, repeat: -1, yoyo: true }
+          );
+        },
       });
     };
 
-    const animateTitle = (element) => {
-      splitTextToSpans(element);
-      gsap.fromTo(
-          element.querySelectorAll('span'),
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            stagger: 0.05,
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 80%',
-              end: 'bottom 20%',
-              toggleActions: 'play none none reset',
-            },
-          }
-      );
-    };
 
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
 
-      animateTitle(addTitleRef1.value);
-      animateTitle(addTitleRef2.value);
-      animateTitle(addTitleRef3.value);
-      animateTitle(addTitleRef4.value);
-
+      const titles = [
+        { el: addTitleRef1.value, text: "Наши продукты_" },
+        { el: addTitleRef2.value, text: "Таймлайн_" },
+        { el: addTitleRef3.value, text: "Цифры и преимущества_" },
+        { el: addTitleRef4.value, text: "Открытые вакансии_" },
+      ];
+      console.log(addTitleRef4)
+      titles.forEach(({ el, text }) => {
+        if (el) {
+          animateTitle(el, text);
+        }
+      });
       const animateCount = (element, endValue) => {
         gsap.fromTo(
             element,
@@ -359,7 +360,7 @@ export default {
       addTitleRef3,
       addTitleRef4,
       animateTitle,
-      splitTextToSpans
+      currentYear
     };
   },
 };
@@ -387,7 +388,7 @@ export default {
       </section>
       <section class="second-block">
         <div ref="addTitleRef1"  class="blocks__title">
-          <h3>Наши продукты_</h3>
+          <h3>Наши продукты_<span class="cursor">_</span></h3>
         </div>
         <div class="second-block__cards df">
           <div class="second-block__card green-card">
@@ -446,7 +447,7 @@ export default {
       </section>
       <section class="third-block">
         <div  ref="addTitleRef2" class="blocks__title">
-          <h3>Таймлайн_</h3>
+          <h3>Таймлайн_<span class="cursor">_</span></h3>
         </div>
         <div class="third-block__cards">
           <div class="third-block__mini-divs">
@@ -467,7 +468,7 @@ export default {
                 :modules="modules"
                 class="mySwiper">
               <Swiper-slide class="third-block__card" v-for="card in filteredTimelines" :key="card.id">
-                <img v-if="card.img" :src="'src/assets/img/' + card.img" :alt="card.imgAlt">
+                <img v-if="card.img" :src="'/src/assets/img/' + card.img" :alt="card.imgAlt">
                 <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
                 <p>{{ card.text }}</p>
                 <span>{{ card.data }}</span>
@@ -481,7 +482,7 @@ export default {
       </section>
       <section class="fourth-block">
         <div  ref="addTitleRef3" class="blocks__title">
-          <h3>Цифры и преимущества_</h3>
+          <h3>Цифры и преимущества_<span class="cursor">_</span></h3>
         </div>
         <div class="fourth-block__map-numbers">
           <div class="fourth-block__map-numbers__mini-div">Network Maps</div>
@@ -608,7 +609,7 @@ export default {
       </section>
       <section class="vacancy-block">
         <div  ref="addTitleRef4" class="blocks__title">
-          <h3>Открытые вакансии_</h3>
+          <h3>Открытые вакансии_<span class="cursor">_</span></h3>
         </div>
         <div class="vacancy-block-grid">
           <div class="vacancy-block-grid__card" v-for="(card, id) in vacancies" :key="id" @click="openSidebar(card)">
@@ -658,7 +659,7 @@ export default {
       <footer>
         <div class="df_jcsb">
           <div class="footer__text df_jcsb">
-            <p>© 2024 «Network Group»</p>
+            <p>© {{ currentYear }} «Network Group»</p>
             <p>ng@ng.ru</p>
           </div>
           <div class="footer__links df">
