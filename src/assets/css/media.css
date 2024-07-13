@@ -1,0 +1,34 @@
+@media (max-width: 1919px) {
+    .first-block__img-div img {
+        width: 1020px;
+    }
+}
+
+@media (max-width: 1600px) {
+    .first-block__img-div img {
+        width: 750px;
+        margin-top: 70px;
+    }
+
+    .first-block-div {
+        justify-content: space-evenly;
+    }
+
+    .second-block__card {
+        width: 300px;
+    }
+
+    .second-block__cards {
+        justify-content: center;
+    }
+
+    .second-block__card__img img {
+        width: 250px;
+        margin-top: 65px;
+    }
+
+    .container {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}

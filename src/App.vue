@@ -8,6 +8,7 @@ import "./style.css";
 import { Scrollbar, Navigation } from "swiper/modules";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
@@ -258,27 +259,72 @@ export default {
       }
     };
 
+
+    const splitTextToSpans = (element) => {
+      const text = element.innerText;
+      element.innerHTML = '';
+      text.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.innerText = char === ' ' ? '\u00A0' : char; // Replace space with a non-breaking space
+        element.appendChild(span);
+      });
+    };
+
+    const animateTitle = (element) => {
+      splitTextToSpans(element);
+      gsap.fromTo(
+          element.querySelectorAll('span'),
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 80%',
+              end: 'bottom 20%',
+              toggleActions: 'play none none reset',
+            },
+          }
+      );
+    };
+
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
-      const animateTitle = (element) => {
-        gsap.from(element, {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reset',
-          },
-        });
-      }
+
       animateTitle(addTitleRef1.value);
       animateTitle(addTitleRef2.value);
       animateTitle(addTitleRef3.value);
       animateTitle(addTitleRef4.value);
+
+      const animateCount = (element, endValue) => {
+        gsap.fromTo(
+            element,
+            { textContent: 0 },
+            {
+              innerText: endValue,
+              duration: 2,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse',
+                onUpdate: function () {
+                  element.textContent = parseFloat(element.textContent).toLocaleString();
+                },
+              }
+            }
+        );
+      };
+
+      document.querySelectorAll('.count').forEach(el => {
+        animateCount(el, el.getAttribute('data-end'));
+      });
+
     });
 
     watch(isSidebarOpen, (newVal) => {
@@ -312,6 +358,8 @@ export default {
       addTitleRef2,
       addTitleRef3,
       addTitleRef4,
+      animateTitle,
+      splitTextToSpans
     };
   },
 };
@@ -459,6 +507,7 @@ export default {
                         :y="point.y - 10"
                         width="20"
                         height="20"
+                        class="city"
                         fill="transparent"
                         @mouseenter="showTooltip($event, point)"
                         @mouseleave="hideTooltip"
@@ -494,17 +543,17 @@ export default {
               <div class="df">
                 <div class="fourth-block__numbers__card">
                   <div class="fourth-block__numbers__card__mini-div">folder/team</div>
-                  <h3>40</h3>
+                  <h3 class="count" data-end="40">0</h3>
                   <p>Сотрудников в команде</p>
                 </div>
                 <div class="fourth-block__numbers__card">
                   <div class="fourth-block__numbers__card__mini-div">stats/downloads</div>
-                  <h3>2 000 000</h3>
+                  <h3 class="count" data-end="2000000">0</h3>
                   <p>Скачиваний у приложений</p>
                 </div>
                 <div class="fourth-block__numbers__card">
                   <div class="fourth-block__numbers__card__mini-div">time/1:06</div>
-                  <h3>4 лет</h3>
+                  <h3 class="count" data-end="4">0</h3>
                   <p>Работаем больше возможного</p>
                 </div>
               </div>
@@ -613,15 +662,15 @@ export default {
             <p>ng@ng.ru</p>
           </div>
           <div class="footer__links df">
-            <a href="">
-              <img src="./assets/img/vk-icon.svg" alt="Icon">
-            </a>
-            <a href="">
+<!--            <a href="">-->
+<!--              <img src="./assets/img/vk-icon.svg" alt="Icon">-->
+<!--            </a>-->
+            <a href="http://t.me/ntw_jobs">
               <img src="./assets/img/telegram-icon.svg" alt="Icon">
             </a>
-            <a href="">
-              <img src="./assets/img/discord-icon.svg" alt="Icon">
-            </a>
+<!--            <a href="">-->
+<!--              <img src="./assets/img/discord-icon.svg" alt="Icon">-->
+<!--            </a>-->
           </div>
         </div>
       </footer>
