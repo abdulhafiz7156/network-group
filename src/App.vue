@@ -6,6 +6,9 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "./style.css";
 import { Scrollbar, Navigation } from "swiper/modules";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   components: {
@@ -44,13 +47,15 @@ export default {
     const vacancies = ref([
       {
         id: 1,
-        title: "Дизигнер",
-        description: "Таким образом реализация намеченных плановых заданий",
-        location: "Москве",
-        type: "Фултайм",
-        experience: "Опыт от 1 года",
+        title: "Разработчик шейдеров",
+        description: "Разработка и оптимизация шейдеров для графических движков.",
+        details: {
+          location: "Москва",
+          type: "Фултайм",
+          experience: "Опыт от 3 лет"
+        },
         requirementsTitle: "Вы нам подходите, если",
-        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirementsDescription: "Ищем опытного разработчика шейдеров.",
         requirements: [
           "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
           "Есть опыт работы с ReShade и/или ENB;",
@@ -61,13 +66,15 @@ export default {
       },
       {
         id: 2,
-        title: "Контент Манагер",
-        description: "Таким образом реализация намеченных плановых заданий",
-        location: "Москве",
-        type: "Фултайм",
-        experience: "Опыт от 1 года",
+        title: "Контент Менеджер",
+        description: "Таким образом реализация намеченных плановых заданий.",
+        details: {
+          location: "Москва",
+          type: "Фултайм",
+          experience: "Опыт от 1 года"
+        },
         requirementsTitle: "Вы нам подходите, если",
-        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirementsDescription: "Таким образом реализация намеченных плановых заданий.",
         requirements: [
           "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
           "Есть опыт работы с ReShade и/или ENB;",
@@ -78,73 +85,82 @@ export default {
       },
       {
         id: 3,
-        title: "Копирайтер",
-        description: "Таким образом реализация намеченных плановых заданий",
-        location: "Москве",
-        type: "Фултайм",
-        experience: "Опыт от 1 года",
+        title: "Проект Менеджер",
+        description: "Организация и контроль выполнения проектов.",
+        details: {
+          location: "Санкт-Петербург",
+          type: "Фултайм",
+          experience: "Опыт от 2 лет"
+        },
         requirementsTitle: "Вы нам подходите, если",
-        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirementsDescription: "Ищем опытного проект-менеджера.",
         requirements: [
-          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
-          "Есть опыт работы с ReShade и/или ENB;",
-          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
-          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+          "У вас есть опыт работы с Agile/Scrum;",
+          "Вы умеете планировать и распределять ресурсы;",
+          "Обладаете отличными коммуникативными навыками;",
+          "Имеете портфолио успешно завершенных проектов."
         ],
-        buttonText: "Написать сейчас"
+        buttonText: "Отправить резюме"
       },
       {
         id: 4,
-        title: "3D Моделлер",
-        description: "Таким образом реализация намеченных плановых заданий",
-        location: "Москве",
-        type: "Фултайм",
-        experience: "Опыт от 1 года",
+        title: "UX/UI Дизайнер",
+        description: "Разработка пользовательских интерфейсов и улучшение UX.",
+        details: {
+          location: "Удаленно",
+          type: "Частичная занятость",
+          experience: "Опыт от 4 лет"
+        },
         requirementsTitle: "Вы нам подходите, если",
-        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirementsDescription: "Ищем талантливого дизайнера.",
         requirements: [
-          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
-          "Есть опыт работы с ReShade и/или ENB;",
-          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
-          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+          "Вы умеете работать с Figma и Sketch;",
+          "Есть опыт работы в крупных проектах;",
+          "Понимаете принципы UX и UI;",
+          "Имеете портфолио с примерами работ."
         ],
         buttonText: "Написать сейчас"
       },
       {
         id: 5,
-        title: "Акционер",
-        description: "Таким образом реализация намеченных плановых заданий",
-        location: "Москве",
-        type: "Фултайм",
-        experience: "Опыт от 1 года",
+        title: "Маркетолог",
+        description: "Разработка и реализация маркетинговых стратегий.",
+        details: {
+          location: "Москва",
+          type: "Фултайм",
+          experience: "Опыт от 3 лет"
+        },
         requirementsTitle: "Вы нам подходите, если",
-        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirementsDescription: "Ищем опытного маркетолога.",
         requirements: [
-          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
-          "Есть опыт работы с ReShade и/или ENB;",
-          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
-          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+          "У вас есть опыт работы в digital marketing;",
+          "Вы умеете анализировать данные и делать выводы;",
+          "Понимаете принципы SEO и SMM;",
+          "Имеете портфолио успешных кейсов."
         ],
-        buttonText: "Написать сейчас"
+        buttonText: "Отправить резюме"
       },
       {
         id: 6,
-        title: "Meta тестировщик",
-        description: "Таким образом реализация намеченных плановых заданий",
-        location: "Москве",
-        type: "Фултайм",
-        experience: "Опыт от 1 года",
+        title: "DevOps Инженер",
+        description: "Автоматизация и управление инфраструктурой.",
+        details: {
+          location: "Санкт-Петербург",
+          type: "Фултайм",
+          experience: "Опыт от 5 лет"
+        },
         requirementsTitle: "Вы нам подходите, если",
-        requirementsDescription: "Таким образом реализация намеченных плановых заданий",
+        requirementsDescription: "Ищем опытного DevOps инженера.",
         requirements: [
-          "У вас глубокие знания языка программирования HLSL/GLSL или других языков написания шейдеров;",
-          "Есть опыт работы с ReShade и/или ENB;",
-          "Имеете навыки работы с графическими движками и понимаете процессы рендеринга;",
-          "Имеете портфолио с примерами работ по созданию или оптимизации шейдеров."
+          "У вас есть опыт работы с Docker и Kubernetes;",
+          "Понимаете принципы CI/CD;",
+          "Знаете скриптовые языки (Bash, Python);",
+          "Имеете портфолио успешно выполненных проектов."
         ],
         buttonText: "Написать сейчас"
-      },
+      }
     ])
+
 
     const firstYear = ref(null);
     const lastYear = ref(null);
@@ -154,6 +170,8 @@ export default {
     const isSidebarOpen = ref(false);
     const selectedVacancy = reactive({});
     const sidebar = ref(null);
+    // const title = ref(null);
+    const titleRefs = ref([]);
 
 
     // Фильтрация cards чтобы показывалось от старых к новым
@@ -241,10 +259,32 @@ export default {
       }
     };
 
+    const addTitleRef = el => {
+      if (el && !titleRefs.value.includes(el)) {
+        titleRefs.value.push(el);
+      }
+    };
+
+    const animatedTitles = () => {
+      titleRefs.value.forEach(title => {
+        gsap.from(title, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: title,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none none',
+          }
+        });
+      });
+    }
     // Automatically run function when component is mounted
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
+      animatedTitles()
     });
 
     watch(isSidebarOpen, (newVal) => {
@@ -274,6 +314,9 @@ export default {
       closeSidebar,
       sidebar,
       modules: [Scrollbar, Navigation],
+      // title,
+      addTitleRef,
+      titleRefs
     };
   },
 };
@@ -299,8 +342,8 @@ export default {
           </div>
         </div>
       </section>
-      <section class="second-block container__80">
-        <div class="blocks__title">
+      <section class="second-block">
+        <div  ref="addTitleRef"  class="blocks__title">
           <h3>Наши продукты_</h3>
         </div>
         <div class="second-block__cards df">
@@ -358,8 +401,8 @@ export default {
           </div>
         </div>
       </section>
-      <section class="third-block container__80">
-        <div class="blocks__title">
+      <section class="third-block">
+        <div  ref="addTitleRef" class="blocks__title">
           <h3>Таймлайн_</h3>
         </div>
         <div class="third-block__cards">
@@ -386,15 +429,15 @@ export default {
                 <p>{{ card.text }}</p>
                 <span>{{ card.data }}</span>
               </Swiper-slide>
-              <div class="swiper-scrollbar"></div>
-              <div class="swiper-button-next"></div>
-              <div class="swiper-button-prev"></div>
+                <div class="swiper-scrollbar"></div>
+                <div class="swiper-button-next"><img src="./assets/img/right-side-icon.svg" alt=""></div>
+                <div class="swiper-button-prev"><img src="./assets/img/left-side-icon.svg" alt=""></div>
             </Swiper>
           </div>
         </div>
       </section>
-      <section class="fourth-block container__80">
-        <div class="blocks__title">
+      <section class="fourth-block">
+        <div  ref="addTitleRef" class="blocks__title">
           <h3>Цифры и преимущества_</h3>
         </div>
         <div class="fourth-block__map-numbers">
@@ -416,13 +459,14 @@ export default {
                   <image href="./assets/img/map.svg" x="0" y="0" width="1000" height="500"/>
                   <g v-for="(point, index) in userPoints" :key="index">
                     <!-- Большой круг для захвата событий -->
-                    <circle
-                        :cx="point.x"
-                        :cy="point.y"
-                        :r="10"
-                    fill="transparent"
-                    @mouseenter="showTooltip($event, point)"
-                    @mouseleave="hideTooltip"
+                    <rect
+                        :x="point.x - 10"
+                        :y="point.y - 10"
+                        width="20"
+                        height="20"
+                        fill="transparent"
+                        @mouseenter="showTooltip($event, point)"
+                        @mouseleave="hideTooltip"
                     />
                     <!-- Маленький круг для отображения -->
                     <circle
@@ -518,19 +562,19 @@ export default {
           </div>
         </div>
       </section>
-      <section class="vacancy-block container__80">
-        <div class="blocks__title">
+      <section class="vacancy-block">
+        <div  ref="addTitleRef" class="blocks__title">
           <h3>Открытые вакансии_</h3>
         </div>
         <div class="vacancy-block-grid">
-          <div class="vacancy-block-grid__card" v-for="(card, id) in vacancies" :key="id" @click="openSidebar(card)">>
+          <div class="vacancy-block-grid__card" v-for="(card, id) in vacancies" :key="id" @click="openSidebar(card)">
             <div class="vacancy-block-grid__card__mini-div">folder/vacancies</div>
             <h3>{{card.title}}</h3>
             <p>{{card.description}}</p>
             <div class="vacancy-block-grid__card__subtitles df">
-              <div>{{card.location}}</div>
-              <div>{{card.type}}</div>
-              <div>{{card.experience}}</div>
+              <div v-for="details in card.details" :key="id">
+                {{details}}
+              </div>
             </div>
           </div>
         </div>
@@ -539,13 +583,53 @@ export default {
               <img src="./assets/img/right-icon.png" alt="Right side icon">
               <img src="./assets/img/right-icon.png" alt="Right side icon">
             </button>
-            <h3>{{selectedVacancy.title}}</h3>
-            <p>{{selectedVacancy.description}}</p>
-            <div>{{selectedVacancy.location}}</div>
-            <div>{{selectedVacancy.type}}</div>
-            <div>{{selectedVacancy.experience}}</div>
+            <div class="sidebar__texts">
+              <div class="sidebar__texts__mini-div">folder/vacancies</div>
+              <div class="sidebar__texts__section">
+                <h3>{{selectedVacancy.title}}</h3>
+                <p>{{selectedVacancy.description}}</p>
+                <div>
+                  <ul>
+                    <li v-for="details in selectedVacancy.details" :key="selectedVacancy.id">
+                      {{details}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h3>{{selectedVacancy.requirementsTitle}}</h3>
+                <p>{{selectedVacancy.requirementsDescription}}</p>
+                <div>
+                  <ul>
+                    <li v-for="details in selectedVacancy.requirements" :key="selectedVacancy.id">
+                      {{details}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button>Написать сейчас</button>
+            </div>
         </div>
       </section>
+      <footer>
+        <div class="df_jcsb">
+          <div class="footer__text df_jcsb">
+            <p>© 2024 «Network Group»</p>
+            <p>ng@ng.ru</p>
+          </div>
+          <div class="footer__links df">
+            <a href="">
+              <img src="./assets/img/vk-icon.svg" alt="Icon">
+            </a>
+            <a href="">
+              <img src="./assets/img/telegram-icon.svg" alt="Icon">
+            </a>
+            <a href="">
+              <img src="./assets/img/discord-icon.svg" alt="Icon">
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   </main>
 </template>
