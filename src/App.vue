@@ -170,9 +170,10 @@ export default {
     const isSidebarOpen = ref(false);
     const selectedVacancy = reactive({});
     const sidebar = ref(null);
-    // const title = ref(null);
-    const titleRefs = ref([]);
-
+    const addTitleRef1 = ref(null);
+    const addTitleRef2 = ref(null);
+    const addTitleRef3 = ref(null);
+    const addTitleRef4 = ref(null);
 
     // Фильтрация cards чтобы показывалось от старых к новым
     const filteredTimelines = computed(() => {
@@ -202,7 +203,6 @@ export default {
       });
 
       firstDataOfYear.value = monthsByYear;
-      console.log(monthsByYear);
     };
 
 
@@ -221,7 +221,6 @@ export default {
       tooltip.value.y = point.y + 105;
       tooltip.value.visible = true;
       activePoint.value = point; // Устанавливаем активный круг
-      console.log(event, point)
     };
 
     const hideTooltip = () => {
@@ -259,32 +258,27 @@ export default {
       }
     };
 
-    const addTitleRef = el => {
-      if (el && !titleRefs.value.includes(el)) {
-        titleRefs.value.push(el);
-      }
-    };
-
-    const animatedTitles = () => {
-      titleRefs.value.forEach(title => {
-        gsap.from(title, {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          scrollTrigger: {
-            trigger: title,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none none',
-          }
-        });
-      });
-    }
-    // Automatically run function when component is mounted
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
-      animatedTitles()
+      const animateTitle = (element) => {
+        gsap.from(element, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reset',
+          },
+        });
+      }
+      animateTitle(addTitleRef1.value);
+      animateTitle(addTitleRef2.value);
+      animateTitle(addTitleRef3.value);
+      animateTitle(addTitleRef4.value);
     });
 
     watch(isSidebarOpen, (newVal) => {
@@ -314,9 +308,10 @@ export default {
       closeSidebar,
       sidebar,
       modules: [Scrollbar, Navigation],
-      // title,
-      addTitleRef,
-      titleRefs
+      addTitleRef1,
+      addTitleRef2,
+      addTitleRef3,
+      addTitleRef4,
     };
   },
 };
@@ -343,7 +338,7 @@ export default {
         </div>
       </section>
       <section class="second-block">
-        <div  ref="addTitleRef"  class="blocks__title">
+        <div ref="addTitleRef1"  class="blocks__title">
           <h3>Наши продукты_</h3>
         </div>
         <div class="second-block__cards df">
@@ -402,7 +397,7 @@ export default {
         </div>
       </section>
       <section class="third-block">
-        <div  ref="addTitleRef" class="blocks__title">
+        <div  ref="addTitleRef2" class="blocks__title">
           <h3>Таймлайн_</h3>
         </div>
         <div class="third-block__cards">
@@ -437,7 +432,7 @@ export default {
         </div>
       </section>
       <section class="fourth-block">
-        <div  ref="addTitleRef" class="blocks__title">
+        <div  ref="addTitleRef3" class="blocks__title">
           <h3>Цифры и преимущества_</h3>
         </div>
         <div class="fourth-block__map-numbers">
@@ -563,7 +558,7 @@ export default {
         </div>
       </section>
       <section class="vacancy-block">
-        <div  ref="addTitleRef" class="blocks__title">
+        <div  ref="addTitleRef4" class="blocks__title">
           <h3>Открытые вакансии_</h3>
         </div>
         <div class="vacancy-block-grid">
