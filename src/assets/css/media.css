@@ -32,3 +32,43 @@
         margin: 0 auto;
     }
 }
+
+
+@media (max-width: 1439px) {
+    .first-block__text-div__logo img {
+        width: 36px;
+        height: 29px;
+    }
+
+    .first-block__text-div__logo p {
+        margin-left: 12px;
+    }
+
+    .vacancy-block-grid__card p {
+        line-height: 30px;
+    }
+
+    .vacancy-block-grid__card__subtitles div {
+        line-height: 25px;
+    }
+
+    .first-block__img-div img {
+        width: 650px;
+        margin-top: 100px;
+    }
+
+    .fourth-block__advantages__card {
+        height: auto !important;
+    }
+
+    .second-block__card__img img {
+        width: 87%;
+        margin-top: 65px;
+    }
+}
+
+@media(max-width: 1280px) {
+
+}
+
+/*keyingisi 1024*/

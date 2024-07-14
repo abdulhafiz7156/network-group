@@ -548,7 +548,9 @@ export default {
                 </div>
               </div>
               <div v-else>
-                <img src="./assets/img/map.png" alt="Picture of map">
+                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/></svg>
+
                 <div class="fourth-block__map__text">
                   <div class="fourth-block__map__mini-div">x0521 · y2715</div>
                   <p>Москва · 211 701</p>

@@ -7,7 +7,7 @@
 }
 
 .first-block__text-div__logo p {
-    font-size: 28px;
+    font-size: clamp(1rem, 0.727rem + 1.36vw, 1.75rem);
     font-weight: 500;
     margin-left: 18px;
     line-height: 28px;
