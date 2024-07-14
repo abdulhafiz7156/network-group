@@ -20,7 +20,7 @@ export default {
   },
   setup() {
     const timelines = ref([
-      { id: 1, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/01' },
+      { id: 1, img: 'src/assets/img/ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/01' },
       { id: 2, img: '', imgAlt: 'NG logo', title: 'Lofi Uppdate', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/05' },
       { id: 3, img: '', imgAlt: 'NG logo', title: '+5', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/02' },
       { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
@@ -284,7 +284,6 @@ export default {
       });
     };
 
-
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
@@ -331,10 +330,13 @@ export default {
     watch(isSidebarOpen, (newVal) => {
       if (newVal) {
         document.addEventListener('click', handleClickOutside);
+        document.body.classList.add('no-scroll');
       } else {
         document.removeEventListener('click', handleClickOutside);
+        document.body.classList.remove('no-scroll');
       }
     });
+
 
 
     return {
@@ -360,7 +362,7 @@ export default {
       addTitleRef3,
       addTitleRef4,
       animateTitle,
-      currentYear
+      currentYear,
     };
   },
 };
@@ -466,9 +468,15 @@ export default {
                   prevEl: '.swiper-button-prev',
                 }"
                 :modules="modules"
-                class="mySwiper">
-              <Swiper-slide class="third-block__card" v-for="card in filteredTimelines" :key="card.id">
-                <img v-if="card.img" :src="'/src/assets/img/' + card.img" :alt="card.imgAlt">
+                :slidesPerView="3"
+            class="mySwiper">
+              <Swiper-slide class="third-block__card"
+                            v-for="card in filteredTimelines"
+                            :key="card.id">
+                <img v-if="card.img"
+                     :src="card.img"
+                     :alt="card.imgAlt"
+                >
                 <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
                 <p>{{ card.text }}</p>
                 <span>{{ card.data }}</span>
@@ -666,7 +674,7 @@ export default {
 <!--            <a href="">-->
 <!--              <img src="./assets/img/vk-icon.svg" alt="Icon">-->
 <!--            </a>-->
-            <a href="http://t.me/ntw_jobs">
+            <a href="http://t.me/ntw_jobs" target="_blank">
               <img src="./assets/img/telegram-icon.svg" alt="Icon">
             </a>
 <!--            <a href="">-->
