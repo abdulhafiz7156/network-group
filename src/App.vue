@@ -284,6 +284,12 @@ export default {
       });
     };
 
+    const getPic = (index) => {
+      return '' + index;
+    }
+
+
+
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
@@ -363,6 +369,7 @@ export default {
       addTitleRef4,
       animateTitle,
       currentYear,
+      getPic
     };
   },
 };
@@ -474,7 +481,7 @@ export default {
                             v-for="card in filteredTimelines"
                             :key="card.id">
                 <img v-if="card.img"
-                     :src="card.img"
+                     :src="getPic(card.img)"
                      :alt="card.imgAlt"
                 >
                 <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
