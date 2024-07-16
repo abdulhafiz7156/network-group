@@ -165,8 +165,7 @@
     }
 
     .third-block__card {
-        height: auto !important;
-        width: auto !important;
+        height: fit-content !important;
     }
 
     .fourth-block__map__nav__text h3 {
@@ -202,10 +201,16 @@
     }
 
     .swiper-scrollbar {
+        display: none;
         top: 442px !important;
         left: var(--swiper-scrollbar-sides-offset, 6.6%) !important;
         width: calc(100% - 2* var(--swiper-scrollbar-sides-offset, 3.8%)) !important;
     }
+
+    .swiper-button-next, .swiper-button-prev {
+        display: none;
+    }
+
 
     .swiper-button-next {
         right: -38px;
@@ -337,6 +342,10 @@
     .fourth-block__map__text {
         top: 29%;
         left: 334%;
+    }
+
+    .sidebar {
+        width: 100%;
     }
 }
 

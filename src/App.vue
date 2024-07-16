@@ -406,7 +406,6 @@ export default {
       </section>
       <section class="second-block">
         <div ref="addTitleRef1" class="blocks__title">
-<!--          <h3>Наши продукты_<span class="cursor">_</span></h3>-->
           <h3>_</h3>
         </div>
         <div class="second-block__cards df">
@@ -466,7 +465,6 @@ export default {
       </section>
       <section class="third-block">
         <div  ref="addTitleRef2" class="blocks__title">
-<!--          <h3>Таймлайн_<span class="cursor">_</span></h3>-->
           <h3>_</h3>
         </div>
         <div class="third-block__cards">
@@ -485,8 +483,9 @@ export default {
                   prevEl: '.swiper-button-prev',
                 }"
                 :modules="modules"
-                :slidesPerView="3"
-            class="mySwiper">
+                :slidesPerView="auto"
+                class="mySwiper"
+            >
               <Swiper-slide class="third-block__card"
                             v-for="card in filteredTimelines"
                             :key="card.id">
@@ -507,7 +506,6 @@ export default {
       </section>
       <section class="fourth-block ">
         <div  ref="addTitleRef3" class="blocks__title">
-<!--          <h3>Цифры и преимущества_<span class="cursor">_</span></h3>-->
           <h3>_</h3>
         </div>
         <div class="fourth-block__map-numbers">
@@ -637,7 +635,6 @@ export default {
       </section>
       <section class="vacancy-block ">
         <div  ref="addTitleRef4" class="blocks__title">
-<!--          <h3>Открытые вакансии_<span class="cursor">_</span></h3>-->
           <h3>_</h3>
         </div>
         <div class="vacancy-block-grid">
