@@ -40,10 +40,19 @@
     line-height: 29px;
     letter-spacing: 0.4px;
     margin-top: 37px;
+    transition: .2s linear;
+}
+
+.first-block__text-div__texts button:hover {
+    box-shadow: 0 0 0 2px #050B16, 0 0 0 4px #6054FF;
 }
 
 .first-block__img-div img{
     margin-left: -26px;
+}
+
+.first-block__img-div-mobile {
+    display: none;
 }
 
 .first-block__text-div__logo img {
@@ -57,7 +66,7 @@
     margin-top: 237px;
 }
 
-.blocks__title{
+.blocks__title h3{
     font-size: clamp(1.75rem, 1.349rem + 1.69vw, 3.375rem);
     font-weight: 600;
     line-height: 54px;
@@ -66,12 +75,18 @@
 .blocks__title .cursor {
     display: inline-block;
     width: 1px;
-    height: 1em;
-    background: black;
-    margin-left: 5px;
-    vertical-align: bottom;
+    background-color: black;
+    animation: blink 1s infinite;
 }
 
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
 
 .second-block__cards {
     margin-top: 68px;
@@ -418,21 +433,20 @@
 .fourth-block__numbers__card {
     padding: 52px 30px;
     width: 480px;
-    margin-top: 69px;
     height: 202px;
     position: relative;
-    border-right: 1px solid var(--second-text-color);
-    border-top: 1px solid var(--second-text-color);
+    border: 1px solid var(--second-text-color);
+    border-right: none;
+    border-top: none;
 }
 
 .fourth-block__numbers__card p {
     font-size: clamp(0.938rem, 0.86rem + 0.32vw, 1.25rem);
 }
 
-.fourth-block__numbers .fourth-block__numbers__card:nth-child(3) {
-    border-right: none;
+.fourth-block__numbers .df .fourth-block__numbers__card:last-child{
+    border-right: 1px solid var(--second-text-color);
 }
-
 
 .fourth-block__numbers__card h3{
     font-size: clamp(1.75rem, 1.349rem + 1.69vw, 3.375rem);
@@ -733,7 +747,7 @@
 }
 
 footer {
-    margin: 135px 0;
+    margin: 120px 0 50px;
     padding: 0 20px;
 }
 
@@ -802,4 +816,9 @@ footer {
     line-height: 33px;
     padding: 15px 20px;
     border-radius: 5px 2px;
+    transition: .2s linear;
+}
+
+.sidebar__texts button:hover {
+    box-shadow: 0 0 0 2px #050B16, 0 0 0 4px #6054FF;
 }

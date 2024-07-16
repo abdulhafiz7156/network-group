@@ -164,7 +164,6 @@ export default {
       }
     ])
 
-
     const firstYear = ref(null);
     const lastYear = ref(null);
     const firstDataOfYear = ref(null);
@@ -208,7 +207,6 @@ export default {
 
       firstDataOfYear.value = monthsByYear;
     };
-
 
     const tooltip = ref({
       visible: false,
@@ -263,9 +261,12 @@ export default {
     };
 
     const animateTitle = (element, newText) => {
-      gsap.to(element.querySelector('h3'), {
+      const h3 = element.querySelector('h3');
+      const cursor = '<span class="cursor">_</span>';
+
+      gsap.to(h3, {
         duration: 3,
-        text: newText,
+        text: newText + cursor, // Append the cursor to the new text
         ease: 'power3.out',
         scrollTrigger: {
           trigger: element,
@@ -274,12 +275,14 @@ export default {
           toggleActions: 'play none none reset',
         },
         onComplete: () => {
-          // Add cursor blink animation after the text animation completes
-          gsap.fromTo(
-              element.querySelector('.cursor'),
-              { opacity: 1 },
-              { opacity: 0, duration: 0.5, repeat: -1, yoyo: true }
-          );
+          // Make the cursor blink after typing completes
+          gsap.to(h3.querySelector('.cursor'), {
+            opacity: 0,
+            repeat: -1,
+            yoyo: true,
+            ease: 'power1.inOut',
+            duration: 0.5,
+          });
         },
       });
     };
@@ -288,49 +291,53 @@ export default {
       return '/src/assets/img/' + index;
     }
 
-
+    const animateCount = (element, endValue) => {
+      gsap.fromTo(
+          element,
+          { innerText: 0 },
+          {
+            innerText: endValue,
+            duration: 2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 80%',
+              end: 'bottom 20%',
+              toggleActions: 'play none none reverse',
+            },
+            snap: { innerText: 1 }, // округление до целых чисел
+            modifiers: {
+              innerText: value => parseFloat(value).toFixed(0) // без форматирования
+            },
+            onUpdate: function () {
+              element.textContent = Math.round(element.innerText).toLocaleString('ru-RU'); // обновление textContent с пробелами
+            },
+          }
+      );
+    };
 
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
 
       const titles = [
-        { el: addTitleRef1.value, text: "Наши продукты_" },
-        { el: addTitleRef2.value, text: "Таймлайн_" },
-        { el: addTitleRef3.value, text: "Цифры и преимущества_" },
-        { el: addTitleRef4.value, text: "Открытые вакансии_" },
+        { el: addTitleRef1.value, text: "Наши продукты" },
+        { el: addTitleRef2.value, text: "Таймлайн" },
+        { el: addTitleRef3.value, text: "Цифры и преимущества" },
+        { el: addTitleRef4.value, text: "Открытые вакансии" },
       ];
-      console.log(addTitleRef4)
+
       titles.forEach(({ el, text }) => {
         if (el) {
           animateTitle(el, text);
+        } else {
+          console.warn('Element reference is null:', el);
         }
       });
-      const animateCount = (element, endValue) => {
-        gsap.fromTo(
-            element,
-            { textContent: 0 },
-            {
-              innerText: endValue,
-              duration: 2,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                end: 'bottom 20%',
-                toggleActions: 'play none none reverse',
-                onUpdate: function () {
-                  element.textContent = parseFloat(element.textContent).toLocaleString();
-                },
-              }
-            }
-        );
-      };
 
       document.querySelectorAll('.count').forEach(el => {
         animateCount(el, el.getAttribute('data-end'));
       });
-
     });
 
     watch(isSidebarOpen, (newVal) => {
@@ -342,8 +349,6 @@ export default {
         document.body.classList.remove('no-scroll');
       }
     });
-
-
 
     return {
       timelines,
@@ -369,7 +374,8 @@ export default {
       addTitleRef4,
       animateTitle,
       currentYear,
-      getPic
+      getPic,
+      animateCount
     };
   },
 };
@@ -377,8 +383,8 @@ export default {
 <template>
   <main>
     <div class="container">
-      <section class="first-block">
-        <div class="first-block-div df">
+      <section class="first-block ">
+        <div class="first-block__div df">
           <div class="first-block__text-div ">
             <div class="first-block__text-div__logo df_ai ">
               <img src="./assets/img/logo.png" alt="">
@@ -393,11 +399,15 @@ export default {
           <div class="first-block__img-div">
             <img src="./assets/img/bg.png" alt="Background image">
           </div>
+          <div class="first-block__img-div-mobile">
+            <img src="./assets/img/cursor.png" alt="Cursor">
+          </div>
         </div>
       </section>
       <section class="second-block">
-        <div ref="addTitleRef1"  class="blocks__title">
-          <h3>Наши продукты_<span class="cursor">_</span></h3>
+        <div ref="addTitleRef1" class="blocks__title">
+<!--          <h3>Наши продукты_<span class="cursor">_</span></h3>-->
+          <h3>_</h3>
         </div>
         <div class="second-block__cards df">
           <div class="second-block__card green-card">
@@ -456,7 +466,8 @@ export default {
       </section>
       <section class="third-block">
         <div  ref="addTitleRef2" class="blocks__title">
-          <h3>Таймлайн_<span class="cursor">_</span></h3>
+<!--          <h3>Таймлайн_<span class="cursor">_</span></h3>-->
+          <h3>_</h3>
         </div>
         <div class="third-block__cards">
           <div class="third-block__mini-divs">
@@ -495,9 +506,10 @@ export default {
           </div>
         </div>
       </section>
-      <section class="fourth-block">
+      <section class="fourth-block ">
         <div  ref="addTitleRef3" class="blocks__title">
-          <h3>Цифры и преимущества_<span class="cursor">_</span></h3>
+<!--          <h3>Цифры и преимущества_<span class="cursor">_</span></h3>-->
+          <h3>_</h3>
         </div>
         <div class="fourth-block__map-numbers">
           <div class="fourth-block__map-numbers__mini-div">Network Maps</div>
@@ -557,23 +569,23 @@ export default {
                 </div>
               </div>
             </div>
-            <div class="fourth-block__numbers">
-              <div class="df">
-                <div class="fourth-block__numbers__card">
-                  <div class="fourth-block__numbers__card__mini-div">folder/team</div>
-                  <h3 class="count" data-end="40">0</h3>
-                  <p>Сотрудников в команде</p>
-                </div>
-                <div class="fourth-block__numbers__card">
-                  <div class="fourth-block__numbers__card__mini-div">stats/downloads</div>
-                  <h3 class="count" data-end="2000000">0</h3>
-                  <p>Скачиваний у приложений</p>
-                </div>
-                <div class="fourth-block__numbers__card">
-                  <div class="fourth-block__numbers__card__mini-div">time/1:06</div>
-                  <h3 class="count" data-end="4">0</h3>
-                  <p>Работаем больше возможного</p>
-                </div>
+          </div>
+          <div class="fourth-block__numbers">
+            <div class="df">
+              <div class="fourth-block__numbers__card">
+                <div class="fourth-block__numbers__card__mini-div">folder/team</div>
+                <h3 class="count" data-end="40">0</h3>
+                <p>Сотрудников в команде</p>
+              </div>
+              <div class="fourth-block__numbers__card">
+                <div class="fourth-block__numbers__card__mini-div">stats/downloads</div>
+                <h3 class="count" data-end="2000000">0</h3>
+                <p>Скачиваний у приложений</p>
+              </div>
+              <div class="fourth-block__numbers__card">
+                <div class="fourth-block__numbers__card__mini-div">time/1:06</div>
+                <h3 class="count" data-end="4">0</h3>
+                <p>Работаем больше возможного</p>
               </div>
             </div>
           </div>
@@ -624,9 +636,10 @@ export default {
           </div>
         </div>
       </section>
-      <section class="vacancy-block">
+      <section class="vacancy-block ">
         <div  ref="addTitleRef4" class="blocks__title">
-          <h3>Открытые вакансии_<span class="cursor">_</span></h3>
+<!--          <h3>Открытые вакансии_<span class="cursor">_</span></h3>-->
+          <h3>_</h3>
         </div>
         <div class="vacancy-block-grid">
           <div class="vacancy-block-grid__card" v-for="(card, id) in vacancies" :key="id" @click="openSidebar(card)">
