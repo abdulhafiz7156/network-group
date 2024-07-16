@@ -394,13 +394,13 @@ export default {
               <h1>Превратите возможности в планы</h1>
               <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание систем массового участия.</p>
               <button>Открытые вакансии [12]</button>
+              <div class="first-block__img-div-mobile">
+                <img src="./assets/img/cursor.png" alt="Cursor">
+              </div>
             </div>
           </div>
           <div class="first-block__img-div">
             <img src="./assets/img/bg.png" alt="Background image">
-          </div>
-          <div class="first-block__img-div-mobile">
-            <img src="./assets/img/cursor.png" alt="Cursor">
           </div>
         </div>
       </section>
@@ -472,7 +472,6 @@ export default {
         <div class="third-block__cards">
           <div class="third-block__mini-divs">
             <div class="third-block__card__mini-div">Start time · {{ this.firstYear }}</div>
-            <div class="third-block__card__mini-div third-block__card__mini-div2">{{this.firstYear}} — {{ this.lastYear }}</div>
           </div>
           <div class="third-block__cards-parent df">
             <Swiper

@@ -220,7 +220,7 @@
     }
 }
 
-@media(max-width: 480px) {
+@media(max-width: 768px) {
     .first-block__img-div-mobile {
         display: block;
     }
@@ -235,9 +235,108 @@
 
     .swiper-scrollbar {
         left: var(--swiper-scrollbar-sides-offset, 10.6%) !important;
-        width: calc(100% - 2* var(--swiper-scrollbar-sides-offset, 7.8%)) !important;
+        width: calc(100% - 2 * var(--swiper-scrollbar-sides-offset, 7.8%)) !important;
         border-top: none;
+    }
+
+    footer .df_jcsb {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .footer__text {
+        text-align: center;
+        gap: 60px;
+    }
+
+    .footer__links {
+        justify-content: center;
+        margin-bottom: 60px;
+    }
+
+    .vacancy-block-grid__card {
+        padding: 20px;
+    }
+
+    .fourth-block__map__nav {
+        display: block;
+    }
+
+    .fourth-block__map-numbers .fourth-block__map-numbers__mini-div {
+        display: none;
+    }
+
+    .fourth-block__buttons {
+        justify-content: center;
+    }
+
+    .fourth-block__map__nav__text h3 {
+        text-align: center;
+        border-left: none;
+    }
+
+    .fourth-block__maps {
+        border: none;
+    }
+
+    .first-block__text-div__texts button {
+        width: auto;
+    }
+
+    .first-block__text-div__texts {
+        position: relative;
+    }
+
+    .first-block__img-div-mobile {
+        position: absolute;
+        left: 60%;
+        top: 70%;
+    }
+
+    .fourth-block__map {
+        overflow-x: scroll;
+        width: 100%;
+    }
+
+    .fourth-block__map svg {
+        width: 1000px;
+    }
+
+    .fourth-block__map__text {
+        top: 29%;
+        left: 197%;
+    }
+
+    .first-block__text-div__logo p {
+        display: none;
+    }
+
+    .first-block__text-div__logo img {
+        width: 41px;
+        height: 40px;
+    }
+
+    .first-block__text-div {
+        margin-top: 60px;
+    }
+
+    .first-block__text-div__texts h1 {
+        line-height: 40px;
+    }
+    .first-block__text-div__texts p {
+        line-height: 25px;
+    }
+
+}
+
+@media(max-width: 480px) {
+    .vacancy-block-grid__card__subtitles {
+        flex-wrap: wrap;
+    }
+
+    .fourth-block__map__text {
+        top: 29%;
+        left: 334%;
     }
 }
 
-/*keyingisi 480*/

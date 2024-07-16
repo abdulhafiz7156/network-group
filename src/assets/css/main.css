@@ -35,7 +35,7 @@
     padding: 15px 20px 15px 20px;
     border-radius: 5px 2px 5px 2px;
     background-color: var(--primary-color);
-    font-size: 20px;
+    font-size: clamp(0.875rem, 0.644rem + 0.97vw, 1.813rem);
     font-weight: 500;
     line-height: 29px;
     letter-spacing: 0.4px;
