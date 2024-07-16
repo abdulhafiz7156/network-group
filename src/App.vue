@@ -316,6 +316,10 @@ export default {
       );
     };
 
+    const scrollToTarget = () => {
+      document.getElementById('vacancies').scrollIntoView({ behavior: 'smooth' });
+    }
+
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
@@ -375,7 +379,8 @@ export default {
       animateTitle,
       currentYear,
       getPic,
-      animateCount
+      animateCount,
+      scrollToTarget
     };
   },
 };
@@ -393,7 +398,7 @@ export default {
             <div class="first-block__text-div__texts">
               <h1>Превратите возможности в планы</h1>
               <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание систем массового участия.</p>
-              <button>Открытые вакансии [12]</button>
+              <button @click="scrollToTarget">Открытые вакансии [12]</button>
               <div class="first-block__img-div-mobile">
                 <img src="./assets/img/cursor.png" alt="Cursor">
               </div>
@@ -483,7 +488,20 @@ export default {
                   prevEl: '.swiper-button-prev',
                 }"
                 :modules="modules"
-                :slidesPerView="auto"
+                :breakpoints="{
+                    768: {
+                      slidesPerView: 1,
+                    },
+                    1024: {
+                      slidesPerView: 2,
+                    },
+                    1300: {
+                      slidesPerView: 3,
+                    },
+                    1920: {
+                      slidesPerView: 'auto',
+                    }
+                  }"
                 class="mySwiper"
             >
               <Swiper-slide class="third-block__card"
@@ -637,7 +655,7 @@ export default {
         <div  ref="addTitleRef4" class="blocks__title">
           <h3>_</h3>
         </div>
-        <div class="vacancy-block-grid">
+        <div id="vacancies" class="vacancy-block-grid">
           <div class="vacancy-block-grid__card" v-for="(card, id) in vacancies" :key="id" @click="openSidebar(card)">
             <div class="vacancy-block-grid__card__mini-div">folder/vacancies</div>
             <h3>{{card.title}}</h3>

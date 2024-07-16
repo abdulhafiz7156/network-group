@@ -34,8 +34,8 @@
     height: 60px;
     padding: 15px 20px 15px 20px;
     border-radius: 5px 2px 5px 2px;
-    background-color: var(--primary-color);
-    font-size: clamp(0.875rem, 0.644rem + 0.97vw, 1.813rem);
+    background-color: var(  --primary-color);
+    font-size: clamp(0.875rem, 0.8rem + 0.38vw, 1.25rem);
     font-weight: 500;
     line-height: 29px;
     letter-spacing: 0.4px;
@@ -681,7 +681,7 @@
 
 .vacancy-block-grid__card__mini-div {
     position: absolute;
-    top: -9%;
+    top: -19px;
     left: 0;
     height: 18px;
     background-color: var(--text-color);
@@ -706,6 +706,7 @@
     font-weight: 500;
     line-height: 33px;
     background-color: var(--second-text-color);
+    border-radius: 2px;
 }
 
 .no-scroll {

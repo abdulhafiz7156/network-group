@@ -63,7 +63,7 @@
 
     .second-block__card__img img {
         width: 87%;
-        margin-top: 65px;
+        margin-top: 17px;
     }
 }
 
@@ -223,6 +223,10 @@
     .fourth-block__numbers .df:first-child {
         margin-top: 100px;
     }
+
+    .fourth-block__numbers__card {
+        padding: 20px 30px 30px 30px;
+    }
 }
 
 @media(max-width: 768px) {
@@ -322,7 +326,7 @@
     }
 
     .first-block__text-div {
-        margin-top: 60px;
+        margin-top: 40  px;
     }
 
     .first-block__text-div__texts h1 {
@@ -332,6 +336,9 @@
         line-height: 25px;
     }
 
+    .vacancy-block-grid__card__subtitles {
+        gap: 10px;
+    }
 }
 
 @media(max-width: 480px) {
