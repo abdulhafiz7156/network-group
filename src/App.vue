@@ -280,8 +280,7 @@ export default {
         ease: 'power3.out',
         scrollTrigger: {
           trigger: element,
-          start: 'top 80%',
-          end: 'bottom 20%',
+          start: 'top 100%',
           toggleActions: 'play none none reset',
         },
         onComplete: () => {
@@ -329,6 +328,16 @@ export default {
     const scrollToTarget = () => {
       document.getElementById('vacancies').scrollIntoView({ behavior: 'smooth' });
     }
+
+    const getCircleRadius = (employees) => {
+      if (employees <= 3) {
+        return 3;
+      } else if (employees <= 6) {
+        return 4.3;
+      } else {
+        return 5.5;
+      }
+    };
 
     onMounted(() => {
       extractYears();
@@ -390,7 +399,8 @@ export default {
       currentYear,
       getPic,
       animateCount,
-      scrollToTarget
+      scrollToTarget,
+      getCircleRadius
     };
   },
 };
@@ -573,7 +583,7 @@ export default {
                     <circle
                         :cx="point.x"
                         :cy="point.y"
-                        :r="point.employees"
+                        :r="getCircleRadius(point.employees)"
                         :fill="activePoint === point ? '#6054FF' : 'white'"
                         class="city"
                         @mouseenter="showTooltip($event, point)"
@@ -589,7 +599,7 @@ export default {
                 </div>
               </div>
               <div v-else>
-                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" class="fakk">
+                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
                   <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/></svg>
               </div>
             </div>
@@ -716,7 +726,6 @@ export default {
         </div>
       </section>
       <footer>
-        <AnimatedBlock>
           <div class="df_jcsb">
           <div class="footer__text df_jcsb">
             <p>© {{ currentYear }} «Network Group»</p>
@@ -734,7 +743,6 @@ export default {
 <!--            </a>-->
           </div>
         </div>
-        </AnimatedBlock>
       </footer>
     </div>
   </main>
