@@ -1,16 +1,19 @@
-@font-face {
-    font-family: 'Ubuntu Sans';
-    src: url('../fonts/Ubuntu-Sans/Ubuntu-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
 
-@font-face {
-    font-family: 'Ubuntu Sans';
-    src: url('../fonts/Ubuntu-Sans/Ubuntu-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'Ubuntu Sans Medium';*/
+/*    src: url('../fonts/Ubuntu-Sans/Ubuntu-Medium.woff2') format('woff2');*/
+/*    font-weight: 500;*/
+/*    font-style: normal;*/
+/*}*/
+
+
+/*@font-face {*/
+/*    font-family: 'Ubuntu Sans';*/
+/*    src: url('../fonts/Ubuntu-Sans/Ubuntu-SemiBold.woff2') format('woff2');*/
+/*    font-weight: 600;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'JetBrains Mono';

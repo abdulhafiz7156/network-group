@@ -9,6 +9,7 @@ import { Scrollbar, Navigation } from "swiper/modules";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
+import AnimatedBlock from './components/AnimatedBlock.vue'
 
 
 gsap.registerPlugin(ScrollTrigger,TextPlugin);
@@ -17,6 +18,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    AnimatedBlock
   },
   setup() {
     const timelines = ref([
@@ -241,7 +243,9 @@ export default {
       isSidebarOpen.value = true;
 
       // Add the click handler for outside clicks
-      document.addEventListener('click', handleClickOutside);
+      setTimeout(() => {
+          document.addEventListener('click', handleClickOutside);
+      }, 0);
     };
 
     const closeSidebar = () => {
@@ -255,10 +259,16 @@ export default {
     };
 
     const handleClickOutside = (event) => {
-      if (sidebar.value && !sidebar.value.contains(event.target) && !event.target.closest('.vacancy-block-grid__card')) {
+      // console.log(sidebar.value)
+      console.log(event)
+      if (sidebar.value && !event.target.closest('.vacancy-block-grid')) {
+        console.log("Click detected outside sidebar and not on a vacancy card");
         closeSidebar();
+      } else {
+        // closeSidebar();
       }
     };
+
 
     const animateTitle = (element, newText) => {
       const h3 = element.querySelector('h3');
@@ -413,82 +423,85 @@ export default {
         <div ref="addTitleRef1" class="blocks__title">
           <h3>_</h3>
         </div>
-        <div class="second-block__cards df">
-          <div class="second-block__card green-card">
-            <div class="card__mini-div card__mini-div--green">Product • 001</div>
-            <div class="second-block__card__texts-img df">
-              <div class="second-block__card__texts">
-                <img src="./assets/img/ng-logo.png" alt="NG logo">
-                <h2>Network Graphics</h2>
-                <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
+        <AnimatedBlock>
+          <div class="second-block__cards df">
+            <div class="second-block__card green-card">
+              <div class="card__mini-div card__mini-div--green">Product • 001</div>
+              <div class="second-block__card__texts-img df">
+                <div class="second-block__card__texts">
+                  <img src="./assets/img/ng-logo.png" alt="NG logo">
+                  <h2>Network Graphics</h2>
+                  <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
+                </div>
+                <div class="second-block__card__img df">
+                  <img src="./assets/img/ng-vector.png" alt="NG Vector">
+                </div>
               </div>
-              <div class="second-block__card__img df">
-                <img src="./assets/img/ng-vector.png" alt="NG Vector">
+            </div>
+            <div class="second-block__card white-card">
+              <div class="card__mini-div card__mini-div--white">Product • 002</div>
+              <div class="second-block__card__texts-img df">
+                <div class="second-block__card__texts">
+                  <img src="./assets/img/meta-logo.png" alt="NG logo">
+                  <h2>Meta Network</h2>
+                  <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
+                </div>
+                <div class="second-block__card__img df">
+                  <img src="./assets/img/meta-vector.png" alt="Meta Vector">
+                </div>
+              </div>
+            </div>
+            <div class="second-block__card yellow-card">
+              <div class="card__mini-div card__mini-div--yellow">Product • 003</div>
+              <div class="second-block__card__texts-img df">
+                <div class="second-block__card__texts">
+                  <img src="./assets/img/startapp.png" alt="StartApp logo">
+                  <h2>StartApp</h2>
+                  <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
+                </div>
+                <div class="second-block__card__img df">
+                  <img src="./assets/img/startapp-vector.png" alt="StartApp Vector">
+                </div>
+              </div>
+            </div>
+            <div class="second-block__card violet-card">
+              <div class="card__mini-div card__mini-div--violet">Product • 004</div>
+              <div class="second-block__card__texts-img df">
+                <div class="second-block__card__texts">
+                  <img src="./assets/img/startapp.png" alt="StartApp logo">
+                  <h2>Зарубежный проект</h2>
+                  <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
+                </div>
+                <div class="second-block__card__img df">
+                  <img src="./assets/img/foreign-vector.png" alt="Foreign Vector">
+                </div>
               </div>
             </div>
           </div>
-          <div class="second-block__card white-card">
-            <div class="card__mini-div card__mini-div--white">Product • 002</div>
-            <div class="second-block__card__texts-img df">
-              <div class="second-block__card__texts">
-                <img src="./assets/img/meta-logo.png" alt="NG logo">
-                <h2>Meta Network</h2>
-                <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
-              </div>
-              <div class="second-block__card__img df">
-                <img src="./assets/img/meta-vector.png" alt="Meta Vector">
-              </div>
-            </div>
-          </div>
-          <div class="second-block__card yellow-card">
-            <div class="card__mini-div card__mini-div--yellow">Product • 003</div>
-            <div class="second-block__card__texts-img df">
-              <div class="second-block__card__texts">
-                <img src="./assets/img/startapp.png" alt="StartApp logo">
-                <h2>StartApp</h2>
-                <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
-              </div>
-              <div class="second-block__card__img df">
-                <img src="./assets/img/startapp-vector.png" alt="StartApp Vector">
-              </div>
-            </div>
-          </div>
-          <div class="second-block__card violet-card">
-            <div class="card__mini-div card__mini-div--violet">Product • 004</div>
-            <div class="second-block__card__texts-img df">
-              <div class="second-block__card__texts">
-                <img src="./assets/img/startapp.png" alt="StartApp logo">
-                <h2>Зарубежный проект</h2>
-                <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.</p>
-              </div>
-              <div class="second-block__card__img df">
-                <img src="./assets/img/foreign-vector.png" alt="Foreign Vector">
-              </div>
-            </div>
-          </div>
-        </div>
+        </AnimatedBlock>
       </section>
       <section class="third-block">
         <div  ref="addTitleRef2" class="blocks__title">
           <h3>_</h3>
         </div>
-        <div class="third-block__cards">
-          <div class="third-block__mini-divs">
-            <div class="third-block__card__mini-div">Start time · {{ this.firstYear }}</div>
-          </div>
-          <div class="third-block__cards-parent df">
-            <Swiper
-                :scrollbar="{
+        <AnimatedBlock>
+          <div class="third-block__cards">
+            <div class="third-block__mini-divs">
+              <div class="third-block__card__mini-div">Start time · {{ this.firstYear }}</div>
+            </div>
+            <div class="third-block__cards-parent df">
+              <Swiper
+                  :scrollbar="{
                   el: '.swiper-scrollbar',
                   draggable: true,
                   hide: false,
                 }"
-                :navigation="{
+                  :navigation="{
                   nextEl: '.swiper-button-next',
                   prevEl: '.swiper-button-prev',
                 }"
-                :modules="modules"
-                :breakpoints="{
+                  :modules="modules"
+                  :breakpoints="{
                     768: {
                       slidesPerView: 1,
                     },
@@ -502,25 +515,26 @@ export default {
                       slidesPerView: 'auto',
                     }
                   }"
-                class="mySwiper"
-            >
-              <Swiper-slide class="third-block__card"
-                            v-for="card in filteredTimelines"
-                            :key="card.id">
-                <img v-if="card.img"
-                     :src="getPic(card.img)"
-                     :alt="card.imgAlt"
-                >
-                <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
-                <p>{{ card.text }}</p>
-                <span>{{ card.data }}</span>
-              </Swiper-slide>
+                  class="mySwiper"
+              >
+                <Swiper-slide class="third-block__card"
+                              v-for="card in filteredTimelines"
+                              :key="card.id">
+                  <img v-if="card.img"
+                       :src="getPic(card.img)"
+                       :alt="card.imgAlt"
+                  >
+                  <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
+                  <p>{{ card.text }}</p>
+                  <span>{{ card.data }}</span>
+                </Swiper-slide>
                 <div class="swiper-scrollbar"></div>
                 <div class="swiper-button-next"><img src="./assets/img/right-side-icon.svg" alt=""></div>
                 <div class="swiper-button-prev"><img src="./assets/img/left-side-icon.svg" alt=""></div>
-            </Swiper>
+              </Swiper>
+            </div>
           </div>
-        </div>
+        </AnimatedBlock>
       </section>
       <section class="fourth-block ">
         <div  ref="addTitleRef3" class="blocks__title">
@@ -575,98 +589,99 @@ export default {
                 </div>
               </div>
               <div v-else>
-                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" class="fakk">
                   <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/></svg>
-
-                <div class="fourth-block__map__text">
-                  <div class="fourth-block__map__mini-div">x0521 · y2715</div>
-                  <p>Москва · 211 701</p>
+              </div>
+            </div>
+          </div>
+          <AnimatedBlock>
+            <div class="fourth-block__numbers">
+              <div class="df">
+                <div class="fourth-block__numbers__card">
+                  <div class="fourth-block__numbers__card__mini-div">folder/team</div>
+                  <h3 class="count" data-end="40">0</h3>
+                  <p>Сотрудников в команде</p>
+                </div>
+                <div class="fourth-block__numbers__card">
+                  <div class="fourth-block__numbers__card__mini-div">stats/downloads</div>
+                  <h3 class="count" data-end="2000000">0</h3>
+                  <p>Скачиваний у приложений</p>
+                </div>
+                <div class="fourth-block__numbers__card">
+                  <div class="fourth-block__numbers__card__mini-div">time/1:06</div>
+                  <h3 class="count" data-end="4">0</h3>
+                  <p>Работаем больше возможного</p>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="fourth-block__numbers">
-            <div class="df">
-              <div class="fourth-block__numbers__card">
-                <div class="fourth-block__numbers__card__mini-div">folder/team</div>
-                <h3 class="count" data-end="40">0</h3>
-                <p>Сотрудников в команде</p>
-              </div>
-              <div class="fourth-block__numbers__card">
-                <div class="fourth-block__numbers__card__mini-div">stats/downloads</div>
-                <h3 class="count" data-end="2000000">0</h3>
-                <p>Скачиваний у приложений</p>
-              </div>
-              <div class="fourth-block__numbers__card">
-                <div class="fourth-block__numbers__card__mini-div">time/1:06</div>
-                <h3 class="count" data-end="4">0</h3>
-                <p>Работаем больше возможного</p>
-              </div>
-            </div>
-          </div>
-          <div class="fourth-block__advantages">
-            <div class="fourth-block__advantages__mini-div">download/advantage</div>
-            <div class="fourth-block__advantages-grid">
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/home-icon.svg" alt="Icon">
-                <h3>Удалёнка или офис</h3>
-                <p>Работай из дома, кафе, офиса, откуда угодно</p>
-              </div>
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/circle-icon.svg" alt="Icon">
-                <h3>Буквально откуда угодно</h3>
-                <p>Работаем с сотрудниками не только из России, но и со всего мира, оплата придёт в любую точку Земли</p>
-              </div>
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/user-icon.svg" alt="Icon">
-                <h3>Кстати об оплате</h3>
-                <p>Еженедельно и никаких задержек</p>
-              </div>
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/home2-icon.svg" alt="Icon">
-                <h3>Офис в центре Санкт-Петербурге</h3>
-                <p>Недалеко от метро</p>
-              </div>
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/building-material-icon.svg" alt="Icon">
-                <h3>Смотрим на твои реальные навыки</h3>
-                <p>А не на высшее образование</p>
-              </div>
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/ladder-icon.svg" alt="Icon">
-                <h3>Постоянно развиваемся</h3>
-                <p>Ты сможешь расти вместе с нами как в карьере, так и в профессии</p>
-              </div>
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/robot-icon.svg" alt="Icon">
-                <h3>Работаем с иностранным софтом и ИИ.</h3>
-                <p>Еженедельно и никаких задержек</p>
-              </div>
-              <div class="fourth-block__advantages__card">
-                <img src="./assets/img/cube-icon.svg" alt="Icon">
-                <h3>Не аутсорс компания</h3>
-                <p>Ты сможешь расти вместе с нами как в карьере, так и в профессии</p>
+          </AnimatedBlock>
+          <AnimatedBlock>
+            <div class="fourth-block__advantages">
+              <div class="fourth-block__advantages__mini-div">download/advantage</div>
+              <div class="fourth-block__advantages-grid">
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/home-icon.svg" alt="Icon">
+                  <h3>Удалёнка или офис</h3>
+                  <p>Работай из дома, кафе, офиса, откуда угодно</p>
+                </div>
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/circle-icon.svg" alt="Icon">
+                  <h3>Буквально откуда угодно</h3>
+                  <p>Работаем с сотрудниками не только из России, но и со всего мира, оплата придёт в любую точку Земли</p>
+                </div>
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/user-icon.svg" alt="Icon">
+                  <h3>Кстати об оплате</h3>
+                  <p>Еженедельно и никаких задержек</p>
+                </div>
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/home2-icon.svg" alt="Icon">
+                  <h3>Офис в центре Санкт-Петербурге</h3>
+                  <p>Недалеко от метро</p>
+                </div>
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/building-material-icon.svg" alt="Icon">
+                  <h3>Смотрим на твои реальные навыки</h3>
+                  <p>А не на высшее образование</p>
+                </div>
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/ladder-icon.svg" alt="Icon">
+                  <h3>Постоянно развиваемся</h3>
+                  <p>Ты сможешь расти вместе с нами как в карьере, так и в профессии</p>
+                </div>
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/robot-icon.svg" alt="Icon">
+                  <h3>Работаем с иностранным софтом и ИИ.</h3>
+                  <p>Еженедельно и никаких задержек</p>
+                </div>
+                <div class="fourth-block__advantages__card">
+                  <img src="./assets/img/cube-icon.svg" alt="Icon">
+                  <h3>Не аутсорс компания</h3>
+                  <p>Ты сможешь расти вместе с нами как в карьере, так и в профессии</p>
+                </div>
               </div>
             </div>
-          </div>
+          </AnimatedBlock>
         </div>
       </section>
-      <section class="vacancy-block ">
+      <section class="vacancy-block" id="vacancies">
         <div  ref="addTitleRef4" class="blocks__title">
           <h3>_</h3>
         </div>
-        <div id="vacancies" class="vacancy-block-grid">
-          <div class="vacancy-block-grid__card" v-for="(card, id) in vacancies" :key="id" @click="openSidebar(card)">
-            <div class="vacancy-block-grid__card__mini-div">folder/vacancies</div>
-            <h3>{{card.title}}</h3>
-            <p>{{card.description}}</p>
-            <div class="vacancy-block-grid__card__subtitles df">
-              <div v-for="details in card.details" :key="id">
-                {{details}}
+        <AnimatedBlock>
+        <div class="vacancy-block-grid">
+            <div class="vacancy-block-grid__card" v-for="(card, index) in vacancies" :key="index" @click="openSidebar(card)" >
+              <div class="vacancy-block-grid__card__mini-div">folder/vacancies</div>
+              <h3>{{card.title}}</h3>
+              <p>{{card.description}}</p>
+              <div class="vacancy-block-grid__card__subtitles df">
+                <div v-for="(details, id) in card.details" :key="id">
+                  {{details}}
+                </div>
               </div>
             </div>
-          </div>
         </div>
+        </AnimatedBlock>
         <div :class="['sidebar', { 'sidebar--open': isSidebarOpen }]" ref="sidebar">
             <button class="sidebar__close-btn" @click="closeSidebar">
               <img src="./assets/img/right-icon.png" alt="Right side icon">
@@ -701,7 +716,8 @@ export default {
         </div>
       </section>
       <footer>
-        <div class="df_jcsb">
+        <AnimatedBlock>
+          <div class="df_jcsb">
           <div class="footer__text df_jcsb">
             <p>© {{ currentYear }} «Network Group»</p>
             <p>ng@ng.ru</p>
@@ -718,6 +734,7 @@ export default {
 <!--            </a>-->
           </div>
         </div>
+        </AnimatedBlock>
       </footer>
     </div>
   </main>
