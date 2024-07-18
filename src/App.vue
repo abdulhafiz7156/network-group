@@ -294,7 +294,7 @@ export default {
     };
 
     const getPic = (index) => {
-      return 'https://network-group.vercel.app/' + 'src/assets/img/' + index;
+      return 'https://network-group.vercel.app/' + 'assets/img/' + index;
     }
 
     const animateCount = (element, endValue) => {
