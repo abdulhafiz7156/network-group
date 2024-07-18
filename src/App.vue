@@ -339,13 +339,13 @@ export default {
     };
 
     const slideNext = () => {
-      swiperRef.value.swiper.slideNext();
       console.log("fak")
+      swiperRef.value.swiper.slideNext();
     };
 
     const slidePrev = () => {
-      swiperRef.value.swiper.slidePrev();
       console.log("prev")
+      swiperRef.value.swiper.slidePrev();
     };
 
 

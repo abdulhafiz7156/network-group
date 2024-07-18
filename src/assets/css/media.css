@@ -6,7 +6,7 @@
 
 @media (max-width: 1600px) {
     .fourth-block__map__nav__mini-div {
-        top: -19%;
+        top: -19% !important;
     }
 
     .first-block__img-div img {
