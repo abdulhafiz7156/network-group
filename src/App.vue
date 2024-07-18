@@ -23,13 +23,12 @@ export default {
   setup() {
     const timelines = ref([
       { id: 1, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/01' },
-      { id: 2, img: '', imgAlt: 'NG logo', title: 'Lofi Uppdate', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/05' },
-      { id: 3, img: '', imgAlt: 'NG logo', title: '+5', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/02' },
       { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
-      { id: 5, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2024/01' },
-      { id: 6, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2023/01' },
-      { id: 7, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2024/01' },
-      { id: 8, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2025/01' },
+      { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
+      { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
+      { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
+      { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
+      { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
     ]);
 
     const userPoints = ref([
@@ -273,7 +272,6 @@ export default {
     const animateTitle = (element, newText) => {
       const h3 = element.querySelector('h3');
       const cursor = '<span class="cursor">_</span>';
-      console.log(element, newText)
       gsap.to(h3, {
         duration: 3,
         text: newText + cursor,
