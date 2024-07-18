@@ -23,7 +23,7 @@ export default {
   setup() {
     const timelines = ref([
       { id: 1, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2019/01' },
-      { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
+      { id: 4, img: '', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
       { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
       { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
       { id: 4, img: 'ng-logo.png', imgAlt: 'NG logo', title: 'Lift off', text: 'Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание.', data: '2020/06' },
@@ -294,7 +294,7 @@ export default {
     };
 
     const getPic = (index) => {
-      return '/src/assets/img/' + index;
+      return '/assets/img/' + index;
     }
 
     const animateCount = (element, endValue) => {
@@ -309,7 +309,7 @@ export default {
               trigger: element,
               start: 'top 80%',
               end: 'bottom 20%',
-              toggleActions: 'play none none reverse',
+              toggleActions: 'play none none none',
             },
             snap: { innerText: 1 }, // округление до целых чисел
             modifiers: {

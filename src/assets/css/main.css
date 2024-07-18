@@ -123,6 +123,7 @@
     justify-content: center;
     font-family: 'JetBrains Mono';
     font-weight: 300;
+    border-radius: 2px 2px 0px 0px;
 }
 
 .green-card {
@@ -316,6 +317,7 @@
 .fourth-block__maps {
     border: 1px solid var(--second-text-color);
     margin-top: 72px;
+    border-radius: 0px 0px 2px 2px;
 }
 
 
@@ -333,6 +335,10 @@
     font-weight: 300;
     line-height: 21px;
     border: 1px solid var(--second-text-color);
+}
+
+.fourth-block__map__nav button:nth-child(2) {
+    border-radius: 0px 2px 2px 0px  ;
 }
 
 .fourth-block__map__nav button:hover {
@@ -357,6 +363,7 @@
     border-bottom: 1px solid var(--second-text-color);
     border-left: 1px solid var(--second-text-color);
     padding: 20px 129px 20px 30px;
+    border-radius: 0px 2px 2px 2px;
 }
 
 .fourth-block__map {
@@ -451,6 +458,7 @@
     border: 1px solid var(--second-text-color);
     border-right: none;
     border-top: none;
+    border-radius: 0px 2px 2px 2px;
 }
 
 .fourth-block__numbers__card p {
@@ -525,7 +533,7 @@
     width: auto;
     height: 253px;
     padding: 53px 29px;
-    border-radius: 2px 0 0 0;
+    border-radius: 2px;
     display: flex;
     flex-direction: column;
     outline: 1px solid var(--second-text-color); /* Используем outline вместо border */
@@ -617,7 +625,6 @@
 }
 
 .swiper-scrollbar-drag {
-    width: 36.8% !important;
     background: var(--second-text-color) !important;
     margin: 3px !important;
     height: 30px !important;
@@ -690,6 +697,7 @@
     padding: 30px;
     cursor: pointer;
     transition: 0.4s ease-in-out;
+    border-radius: 0px 2px 2px 2px;
 }
 
 .vacancy-block-grid__card:hover {
