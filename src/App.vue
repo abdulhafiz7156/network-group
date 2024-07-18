@@ -179,6 +179,8 @@ export default {
     const addTitleRef3 = ref(null);
     const addTitleRef4 = ref(null);
     const currentYear = ref(new Date().getFullYear());
+    const swiperRef = ref(null)
+    const scrollbarThumb = ref(null);
 
     // Фильтрация cards чтобы показывалось от старых к новым
     const filteredTimelines = computed(() => {
@@ -190,8 +192,6 @@ export default {
       firstYear.value = filteredTimelines.value[0].data.split('/')[0];
       // нахождение самого нового и форматирование
       lastYear.value = filteredTimelines.value[filteredTimelines.value.length - 1].data.split('/')[0];
-
-
 
       const monthsByYear = {};
 
@@ -273,10 +273,10 @@ export default {
     const animateTitle = (element, newText) => {
       const h3 = element.querySelector('h3');
       const cursor = '<span class="cursor">_</span>';
-
+      console.log(element, newText)
       gsap.to(h3, {
         duration: 3,
-        text: newText + cursor, // Append the cursor to the new text
+        text: newText + cursor,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: element,
@@ -284,7 +284,6 @@ export default {
           toggleActions: 'play none none reset',
         },
         onComplete: () => {
-          // Make the cursor blink after typing completes
           gsap.to(h3.querySelector('.cursor'), {
             opacity: 0,
             repeat: -1,
@@ -338,6 +337,17 @@ export default {
         return 5.5;
       }
     };
+
+    const slideNext = () => {
+      swiperRef.value.swiper.slideNext();
+    };
+
+    const slidePrev = () => {
+      swiperRef.value.swiper.slidePrev();
+    };
+
+
+
 
     onMounted(() => {
       extractYears();
@@ -400,7 +410,10 @@ export default {
       getPic,
       animateCount,
       scrollToTarget,
-      getCircleRadius
+      getCircleRadius,
+      slideNext,
+      slidePrev,
+      scrollbarThumb
     };
   },
 };
@@ -502,14 +515,14 @@ export default {
             <div class="third-block__cards-parent df">
               <Swiper
                   :scrollbar="{
-                  el: '.swiper-scrollbar',
-                  draggable: true,
-                  hide: false,
-                }"
+                    el: '.swiper-scrollbar',
+                    draggable: true,
+                    hide: false,
+                  }"
                   :navigation="{
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-                }"
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                  }"
                   :modules="modules"
                   :breakpoints="{
                     768: {
@@ -538,10 +551,10 @@ export default {
                   <p>{{ card.text }}</p>
                   <span>{{ card.data }}</span>
                 </Swiper-slide>
-                <div class="swiper-scrollbar"></div>
-                <div class="swiper-button-next"><img src="./assets/img/right-side-icon.svg" alt=""></div>
-                <div class="swiper-button-prev"><img src="./assets/img/left-side-icon.svg" alt=""></div>
               </Swiper>
+                  <div class="swiper-scrollbar"></div>
+                  <div class="swiper-button-next" @click="slideNext"><img src="./assets/img/right-side-icon.svg" alt=""></div>
+                  <div class="swiper-button-prev" @click="slidePrev"><img src="./assets/img/left-side-icon.svg" alt=""></div>
             </div>
           </div>
         </AnimatedBlock>
@@ -600,7 +613,8 @@ export default {
               </div>
               <div v-else>
                 <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                  <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/></svg>
+                  <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/>
+                </svg>
               </div>
             </div>
           </div>
@@ -744,6 +758,7 @@ export default {
           </div>
         </div>
       </footer>
+      <div v-if="isSidebarOpen" class="overlay" @click="closeSidebar"></div>
     </div>
   </main>
 </template>

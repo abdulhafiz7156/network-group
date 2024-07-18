@@ -5,6 +5,10 @@
 }
 
 @media (max-width: 1600px) {
+    .fourth-block__map__nav__mini-div {
+        top: -19%;
+    }
+
     .first-block__img-div img {
         width: 750px;
         margin-top: 70px;
@@ -87,13 +91,11 @@
 
     .swiper-scrollbar {
         top: 355px !important;
-        left: var(--swiper-scrollbar-sides-offset, 5%) !important;
-        width: calc(100% - 2* var(--swiper-scrollbar-sides-offset, 5%)) !important;
         border-top: none;
     }
 
     .mySwiper {
-        height: 442px;
+        height: 291px;
     }
 
     .second-block__card__img img {
@@ -103,7 +105,16 @@
     .fourth-block__map__nav__text h3 {
         padding: 20px 67px 20px 30px;
     }
+
+    .swiper-scrollbar-horizontal {
+        top: 291.5px !important;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        top: 78.4%;
+    }
 }
+
 
 @media(max-width: 1024px) {
     .first-block__text-div__texts p {
@@ -120,6 +131,9 @@
 
     .first-block__img-div-mobile {
         display: block;
+        left: 60%;
+        position: absolute;
+        top: 53%;
     }
 
     .first-block {
@@ -174,10 +188,6 @@
 
     .fourth-block__map-numbers__mini-div {
         top: -0.6%;
-    }
-
-    .fourth-block__map__nav__mini-div {
-        top: -19%;
     }
 
     .sidebar {
@@ -353,6 +363,18 @@
 
     .sidebar {
         width: 100%;
+    }
+
+    .second-block__card {
+        width: 300px;
+    }
+
+    .second-block__card__img {
+        justify-content: center;
+    }
+
+    .second-block__card__texts {
+        padding: 32px 18px;
     }
 }
 
