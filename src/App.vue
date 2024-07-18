@@ -546,6 +546,7 @@ export default {
                        :src="getPic(card.img)"
                        :alt="card.imgAlt"
                   >
+                  <img src="./assets/img/ng-logo.png" alt="">
                   <h3 :class="{ mt34: !card.img}">{{ card.title }}</h3>
                   <p>{{ card.text }}</p>
                   <span>{{ card.data }}</span>
