@@ -340,10 +340,12 @@ export default {
 
     const slideNext = () => {
       swiperRef.value.swiper.slideNext();
+      console.log("fak")
     };
 
     const slidePrev = () => {
       swiperRef.value.swiper.slidePrev();
+      console.log("prev")
     };
 
 
@@ -376,10 +378,8 @@ export default {
     watch(isSidebarOpen, (newVal) => {
       if (newVal) {
         document.addEventListener('click', handleClickOutside);
-        document.body.classList.add('no-scroll');
       } else {
         document.removeEventListener('click', handleClickOutside);
-        document.body.classList.remove('no-scroll');
       }
     });
 
@@ -523,6 +523,7 @@ export default {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                   }"
+                  ref="swiperRef"
                   :modules="modules"
                   :breakpoints="{
                     768: {
