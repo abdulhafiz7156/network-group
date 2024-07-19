@@ -32,19 +32,17 @@ export default {
     ]);
 
     const userPoints = ref([
-      { city: 'Москва', employees: '6', x: 780, y: 240 },
-      { city: 'Москва', employees: '5', x: 700, y: 240 },
-      { city: 'Москва', employees: '3', x: 760, y: 240 },
+      { city: 'Москва', employees: '3', x: 740, y: 190 },
+      { city: 'Москва', employees: '3', x: 760, y: 200 },
+      { city: 'Москва', employees: '3', x: 780, y: 190 },
       { city: 'Москва', employees: '3', x: 780, y: 210 },
-      { city: 'Москва', employees: '3', x: 790, y: 240 },
-      { city: 'Москва', employees: '3', x: 700, y: 250 },
-      { city: 'Москва', employees: '3', x: 730, y: 200 },
       { city: 'Москва', employees: '3', x: 760, y: 220 },
-      { city: 'Москва', employees: '8', x: 740, y: 250 },
-      { city: 'Москва', employees: '3', x: 780, y: 200 },
-      { city: 'Москва', employees: '3', x: 710, y: 280 },
-      { city: 'Москва', employees: '3', x: 770, y: 260 },
-      { city: 'Москва', employees: '3', x: 700, y: 270 },
+      { city: 'Москва', employees: '8', x: 740, y: 240 },
+      { city: 'Москва', employees: '3', x: 760, y: 250 },
+      { city: 'Москва', employees: '3', x: 760, y: 250 },
+      { city: 'Москва', employees: '3', x: 780, y: 260 },
+      { city: 'Москва', employees: '3', x: 770, y: 270 },
+      { city: 'Москва', employees: '3', x: 730, y: 200 },
       // Добавьте другие точки здесь
     ]);
 
@@ -546,7 +544,6 @@ export default {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                   }"
-                  ref="swiperRef"
                   :modules="modules"
                   :breakpoints="{
                     768: {
@@ -636,7 +633,7 @@ export default {
                 </div>
               </div>
               <div v-else>
-                <svg viewBox="0 0 1339 712" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 1339 711" xmlns="http://www.w3.org/2000/svg">
                   <image href="./assets/img/map1.svg" x="0" y="0" width="1339" height="712"/>
                 </svg>
               </div>
