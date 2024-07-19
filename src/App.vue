@@ -32,19 +32,19 @@ export default {
     ]);
 
     const userPoints = ref([
-      { city: 'Москва', employees: '6', x: 580, y: 140 },
-      { city: 'Москва', employees: '5', x: 500, y: 140 },
-      { city: 'Москва', employees: '3', x: 560, y: 140 },
-      { city: 'Москва', employees: '3', x: 580, y: 210 },
-      { city: 'Москва', employees: '3', x: 590, y: 140 },
-      { city: 'Москва', employees: '3', x: 600, y: 150 },
-      { city: 'Москва', employees: '3', x: 530, y: 100 },
-      { city: 'Москва', employees: '3', x: 560, y: 120 },
-      { city: 'Москва', employees: '8', x: 540, y: 150 },
-      { city: 'Москва', employees: '3', x: 580, y: 200 },
-      { city: 'Москва', employees: '3', x: 610, y: 180 },
-      { city: 'Москва', employees: '3', x: 570, y: 160 },
-      { city: 'Москва', employees: '3', x: 600, y: 170 },
+      { city: 'Москва', employees: '6', x: 780, y: 240 },
+      { city: 'Москва', employees: '5', x: 700, y: 240 },
+      { city: 'Москва', employees: '3', x: 760, y: 240 },
+      { city: 'Москва', employees: '3', x: 780, y: 210 },
+      { city: 'Москва', employees: '3', x: 790, y: 240 },
+      { city: 'Москва', employees: '3', x: 700, y: 250 },
+      { city: 'Москва', employees: '3', x: 730, y: 200 },
+      { city: 'Москва', employees: '3', x: 760, y: 220 },
+      { city: 'Москва', employees: '8', x: 740, y: 250 },
+      { city: 'Москва', employees: '3', x: 780, y: 200 },
+      { city: 'Москва', employees: '3', x: 710, y: 280 },
+      { city: 'Москва', employees: '3', x: 770, y: 260 },
+      { city: 'Москва', employees: '3', x: 700, y: 270 },
       // Добавьте другие точки здесь
     ]);
 
@@ -602,8 +602,8 @@ export default {
             </div>
             <div class="fourth-block__map">
               <div v-if="!mapUsers">
-                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                  <image href="./assets/img/map.svg" x="0" y="0" width="1000" height="500"/>
+                <svg viewBox="0 0 1339 712" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map.svg" x="0" y="0" width="1339" height="712"/>
                   <g v-for="(point, index) in userPoints" :key="index">
                     <!-- Большой круг для захвата событий -->
                     <rect
@@ -636,8 +636,8 @@ export default {
                 </div>
               </div>
               <div v-else>
-                <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                  <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/>
+                <svg viewBox="0 0 1339 712" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map1.svg" x="0" y="0" width="1339" height="712"/>
                 </svg>
               </div>
             </div>
