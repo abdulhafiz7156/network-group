@@ -180,6 +180,10 @@ export default {
     const currentYear = ref(new Date().getFullYear());
     const swiperRef = ref(null)
     const scrollbarThumb = ref(null);
+    const cursorCeo = ref(null);
+    const cursorUser = ref(null);
+    const cursorDev = ref(null);
+    const cursorUserMobile = ref(null)
 
     // Фильтрация cards чтобы показывалось от старых к новым
     const filteredTimelines = computed(() => {
@@ -294,7 +298,9 @@ export default {
     };
 
     const getPic = (index) => {
-      return process.env.BASE_URL + 'assets/img/' + index;
+      console.log(index)
+      return 'https://network-group.vercel.app/' + 'assets/img/' + index;
+              // https://network-group.vercel.app/     assets/img/ ng-logo.png
     }
 
     const animateCount = (element, endValue) => {
@@ -371,6 +377,16 @@ export default {
       document.querySelectorAll('.count').forEach(el => {
         animateCount(el, el.getAttribute('data-end'));
       });
+
+      gsap.set(cursorCeo.value, { x: '-100%', y: '-100%' });
+      gsap.set(cursorUser.value, { x: '100%', y: '-100%' });
+      // gsap.set(cursorUserMobile.value, { x: '100%', y: '-100%' });
+      gsap.set(cursorDev.value, { x: '-100%', y: '100%' });
+
+      gsap.to(cursorCeo.value, { duration: 2, x: '-50%', y: '450%', ease: 'power2.inOut' });
+      gsap.to(cursorUser.value, { duration: 2, x: '-30%', y: '-750%', ease: 'power2.inOut', delay: 0.5 });
+      gsap.to(cursorUserMobile.value, { duration: 2, x: '0%', y: '-500%', ease: 'power2.inOut', delay: 0.5 });
+      gsap.to(cursorDev.value, { duration: 2, x: '310%', y: '-240%', ease: 'power2.inOut', delay: 0.5 });
     });
 
     watch(isSidebarOpen, (newVal) => {
@@ -411,7 +427,11 @@ export default {
       getCircleRadius,
       slideNext,
       slidePrev,
-      scrollbarThumb
+      scrollbarThumb,
+      cursorCeo,
+      cursorUser,
+      cursorDev,
+      cursorUserMobile
     };
   },
 };
@@ -431,12 +451,17 @@ export default {
               <p>Таким образом реализация намеченных плановых заданий в значительной степени обуславливает создание систем массового участия.</p>
               <button @click="scrollToTarget">Открытые вакансии [12]</button>
               <div class="first-block__img-div-mobile">
-                <img src="./assets/img/cursor.png" alt="Cursor">
+                <img src="./assets/img/cursor-user.png" alt="Cursor" ref="cursorUserMobile">
               </div>
             </div>
           </div>
           <div class="first-block__img-div">
-            <img src="./assets/img/bg.png" alt="Background image">
+            <img src="./assets/img/bg.png" alt="Background image" class="first-block__img__div__img">
+            <div class="cursors">
+              <img src="./assets/img/cursor-ceo.svg" alt="Cursor of Ceo" class="cursor cursor-ceo" ref="cursorCeo" />
+              <img src="./assets/img/cursor-user.svg" alt="Cursor of User" class="cursor cursor-user" ref="cursorUser" />
+              <img src="./assets/img/cursor-dev.svg" alt="Cursor of Developer" class="cursor cursorDev" ref="cursorDev" />
+            </div>
           </div>
         </div>
       </section>
