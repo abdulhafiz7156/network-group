@@ -222,10 +222,39 @@ export default {
     const showTooltip = (event, point) => {
       tooltip.value.city = point.city;
       tooltip.value.employees = point.employees;
-      tooltip.value.x = point.x + 107;
-      tooltip.value.y = point.y + 105;
+      const width = window.innerWidth;
+
+      if (width >= 1920) {
+        tooltip.value.x = point.x + 107;
+        tooltip.value.y = point.y + 105;
+      } else if(width >= 1600){
+        tooltip.value.x = point.x + 100;
+        tooltip.value.y = point.y + 100;
+      } else if (width >= 1439) {
+        tooltip.value.x = point.x - 10;
+        tooltip.value.y = point.y + 50;
+      } else if (width >= 1280) {
+        tooltip.value.x = point.x - 100;
+        tooltip.value.y = point.y - 100;
+      } else if (width >= 1024) {
+        tooltip.value.x = point.x - 100;
+        tooltip.value.y = point.y + 20;
+      } else if (width >= 768) {
+        tooltip.value.x = point.x - 300;
+        tooltip.value.y = point.y - 50;
+      }
+
+      // if(window.innerWidth < 1600){
+      //   tooltip.value.x = point.x - 40;
+      //   tooltip.value.y = point.y + 40;
+      // } else
+      // } else if(window.innerWidth >= 1439){
+      //   tooltip.value.x = point.x + 1000;
+      //   tooltip.value.y = point.y + 1000;
+      // }
+
       tooltip.value.visible = true;
-      activePoint.value = point; // Устанавливаем активный круг
+      activePoint.value = point;
     };
 
     const hideTooltip = () => {
@@ -604,8 +633,8 @@ export default {
                   <g v-for="(point, index) in userPoints" :key="index">
                     <!-- Большой круг для захвата событий -->
                     <rect
-                        :x="point.x - 10"
-                        :y="point.y - 10"
+                        :x="point.x - 400"
+                        :y="point.y - 400"
                         width="20"
                         height="20"
                         class="city"
