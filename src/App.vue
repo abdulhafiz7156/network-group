@@ -397,7 +397,10 @@ export default {
       } else if (width <= 1600) {
         xOffset = -10;
         yOffset = 50;
-      } else {
+      } else if (width <= 1500) {
+        xOffset = + 100;
+        yOffset = -50;
+      }else {
         xOffset = 100;
         yOffset = 90;
       }
