@@ -33,19 +33,19 @@ export default {
     ]);
 
     const userPoints = ref([
-      { city: 'Москва', employees: '6', x: 580, y: 140 },
-      { city: 'Москва', employees: '5', x: 500, y: 140 },
-      { city: 'Москва', employees: '3', x: 560, y: 140 },
-      { city: 'Москва', employees: '3', x: 580, y: 210 },
-      { city: 'Москва', employees: '3', x: 590, y: 140 },
-      { city: 'Москва', employees: '3', x: 600, y: 150 },
-      { city: 'Москва', employees: '3', x: 530, y: 100 },
-      { city: 'Москва', employees: '3', x: 560, y: 120 },
-      { city: 'Москва', employees: '8', x: 540, y: 150 },
-      { city: 'Москва', employees: '3', x: 580, y: 200 },
-      { city: 'Москва', employees: '3', x: 610, y: 180 },
-      { city: 'Москва', employees: '3', x: 570, y: 160 },
-      { city: 'Москва', employees: '3', x: 600, y: 170 },
+      { city: 'Москва', employees: '6', x: 780, y: 240 },
+      { city: 'Москва', employees: '5', x: 700, y: 240 },
+      { city: 'Москва', employees: '3', x: 760, y: 240 },
+      { city: 'Москва', employees: '3', x: 780, y: 210 },
+      { city: 'Москва', employees: '3', x: 790, y: 240 },
+      { city: 'Москва', employees: '3', x: 700, y: 250 },
+      { city: 'Москва', employees: '3', x: 730, y: 200 },
+      { city: 'Москва', employees: '3', x: 760, y: 220 },
+      { city: 'Москва', employees: '8', x: 740, y: 250 },
+      { city: 'Москва', employees: '3', x: 780, y: 200 },
+      { city: 'Москва', employees: '3', x: 710, y: 280 },
+      { city: 'Москва', employees: '3', x: 770, y: 260 },
+      { city: 'Москва', employees: '3', x: 700, y: 270 },
       // Добавьте другие точки здесь
     ]);
 
@@ -228,35 +228,17 @@ export default {
       tooltip.value.city = point.city;
       tooltip.value.employees = point.employees;
       const width = window.innerWidth;
-      //
-      // if (width >= 1920) {
-      //   tooltip.value.x = point.x + 107;
-      //   tooltip.value.y = point.y + 105;
-      // } else if(width >= 1600){
-      //   tooltip.value.x = point.x + 100;
-      //   tooltip.value.y = point.y + 100;
-      // } else if (width >= 1439) {
-      //   tooltip.value.x = point.x - 10;
-      //   tooltip.value.y = point.y + 50;
-      // } else if (width >= 1280) {
-      //   tooltip.value.x = point.x - 100;
-      //   tooltip.value.y = point.y - 100;
-      // } else if (width >= 1024) {
-      //   tooltip.value.x = point.x - 100;
-      //   tooltip.value.y = point.y + 20;
-      // } else if (width >= 768) {
-      //   tooltip.value.x = point.x - 300;
-      //   tooltip.value.y = point.y - 50;
-      // }
 
-      // if(window.innerWidth < 1600){
-        tooltip.value.x = point.x - 40;
-        tooltip.value.y = point.y + 40;
-      // } else
-      // } else if(window.innerWidth >= 1439){
-      //   tooltip.value.x = point.x + 1000;
-      //   tooltip.value.y = point.y + 1000;
-      // }
+      if(width <= 1024) {
+        tooltip.value.x = point.x - 100;
+        tooltip.value.y = point.y + 20;
+      } else if(width <= 1600){
+        tooltip.value.x = point.x -10;
+        tooltip.value.y = point.y + 50;
+      } else {
+        tooltip.value.x = point.x + 100;
+        tooltip.value.y = point.y + 90;
+      }
 
       tooltip.value.visible = true;
       activePoint.value = point;
@@ -401,11 +383,45 @@ export default {
       }
     };
 
+    const updateTooltipPosition = (point) => {
+      const svgElement = mapSvg.value;
+      const boundingBox = svgElement.getBoundingClientRect();
+      const width = window.innerWidth;
+
+      let xOffset = 0;
+      let yOffset = 0;
+
+      if (width <= 1024) {
+        xOffset = 0;
+        yOffset = -20;
+      } else if (width <= 1600) {
+        xOffset = -10;
+        yOffset = 50;
+      } else {
+        xOffset = 100;
+        yOffset = 90;
+      }
+
+      tooltip.value.x = boundingBox.left + point.x + xOffset;
+      tooltip.value.y = boundingBox.top + point.y + yOffset;
+    };
 
     onBeforeUnmount(() => {
       window.removeEventListener('resize', adjustSvgSize);
+      window.removeEventListener('resize', updateTooltipPosition);
+
     });
     onMounted(() => {
+
+      window.addEventListener('resize', () => {
+        if (tooltip.value.visible) {
+          const point = userPoints.value.find(p => p.city === tooltip.value.city);
+          if (point) {
+            updateTooltipPosition(point);
+          }
+        }
+      });
+
       extractYears();
       document.addEventListener('click', handleClickOutside);
       adjustSvgSize();
@@ -653,8 +669,8 @@ export default {
             </div>
             <div class="fourth-block__map">
               <div v-if="!mapUsers">
-                <svg ref="mapSvg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                  <image href="./assets/img/map.svg" x="0" y="0" width="1000" height="500"/>
+                <svg ref="mapSvg" viewBox="0 0 1337 712" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map.svg" x="0" y="0" width="1337" height="712"/>
                   <g v-for="(point, index) in userPoints" :key="index">
                     <!-- Большой круг для захвата событий -->
                     <rect
@@ -687,8 +703,8 @@ export default {
                 </div>
               </div>
               <div v-else>
-                <svg ref="map1Svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
-                  <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/>
+                <svg ref="map1Svg" viewBox="0 0 1337 712" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map1.svg" x="0" y="0" width="1337" height="712"/>
                 </svg>
               </div>
             </div>
