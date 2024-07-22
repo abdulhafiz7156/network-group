@@ -678,17 +678,25 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-    color: var(--second-text-color);
-    background-color: transparent;
-    border: 1px solid var(--second-text-color);
-    border-top: none;
-    width: 45px;
-    height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 69.5%;
+    color: var(--second-text-color) !important;
+    background-color: transparent !important;
+    border: 1px solid var(--second-text-color) !important;
+    border-top: none !important;
+    width: 45px !important;
+    height: 37px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    top: 74.3% !important;
+}
+
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    display: none !important;
+}
+
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+    display: none !important;
 }
 
 
@@ -700,16 +708,18 @@
 }
 
 .swiper-button-next {
-    border-left: none;
+    border-left: none !important;
+    right: 0px !important;
 }
 
 .swiper-button-prev {
-    border-right: none;
+    border-right: none !important;
+    left: 0px !important;
 }
 
 
-.swiper-button-next {
-    right: 0px;
+.swiper-button-prev {
+    right: 0px !important;
 }
 
 .vacancy-block {

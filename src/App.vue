@@ -1,10 +1,11 @@
 <script>
 import './style.css';
-import { ref, computed, onMounted, reactive, watch } from 'vue';
+import { ref, computed, onMounted, reactive, watch, onBeforeUnmount } from 'vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "./style.css";
+import 'swiper/swiper-bundle.css';
 import { Scrollbar, Navigation } from "swiper/modules";
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -32,17 +33,19 @@ export default {
     ]);
 
     const userPoints = ref([
-      { city: 'Москва', employees: '3', x: 740, y: 190 },
-      { city: 'Москва', employees: '3', x: 760, y: 200 },
-      { city: 'Москва', employees: '3', x: 780, y: 190 },
-      { city: 'Москва', employees: '3', x: 780, y: 210 },
-      { city: 'Москва', employees: '3', x: 760, y: 220 },
-      { city: 'Москва', employees: '8', x: 740, y: 240 },
-      { city: 'Москва', employees: '3', x: 760, y: 250 },
-      { city: 'Москва', employees: '3', x: 760, y: 250 },
-      { city: 'Москва', employees: '3', x: 780, y: 260 },
-      { city: 'Москва', employees: '3', x: 770, y: 270 },
-      { city: 'Москва', employees: '3', x: 730, y: 200 },
+      { city: 'Москва', employees: '6', x: 580, y: 140 },
+      { city: 'Москва', employees: '5', x: 500, y: 140 },
+      { city: 'Москва', employees: '3', x: 560, y: 140 },
+      { city: 'Москва', employees: '3', x: 580, y: 210 },
+      { city: 'Москва', employees: '3', x: 590, y: 140 },
+      { city: 'Москва', employees: '3', x: 600, y: 150 },
+      { city: 'Москва', employees: '3', x: 530, y: 100 },
+      { city: 'Москва', employees: '3', x: 560, y: 120 },
+      { city: 'Москва', employees: '8', x: 540, y: 150 },
+      { city: 'Москва', employees: '3', x: 580, y: 200 },
+      { city: 'Москва', employees: '3', x: 610, y: 180 },
+      { city: 'Москва', employees: '3', x: 570, y: 160 },
+      { city: 'Москва', employees: '3', x: 600, y: 170 },
       // Добавьте другие точки здесь
     ]);
 
@@ -181,7 +184,9 @@ export default {
     const cursorCeo = ref(null);
     const cursorUser = ref(null);
     const cursorDev = ref(null);
-    const cursorUserMobile = ref(null)
+    const cursorUserMobile = ref(null);
+    const mapSvg = ref(null);
+    const map1Svg = ref(null);
 
     // Фильтрация cards чтобы показывалось от старых к новым
     const filteredTimelines = computed(() => {
@@ -223,30 +228,30 @@ export default {
       tooltip.value.city = point.city;
       tooltip.value.employees = point.employees;
       const width = window.innerWidth;
-
-      if (width >= 1920) {
-        tooltip.value.x = point.x + 107;
-        tooltip.value.y = point.y + 105;
-      } else if(width >= 1600){
-        tooltip.value.x = point.x + 100;
-        tooltip.value.y = point.y + 100;
-      } else if (width >= 1439) {
-        tooltip.value.x = point.x - 10;
-        tooltip.value.y = point.y + 50;
-      } else if (width >= 1280) {
-        tooltip.value.x = point.x - 100;
-        tooltip.value.y = point.y - 100;
-      } else if (width >= 1024) {
-        tooltip.value.x = point.x - 100;
-        tooltip.value.y = point.y + 20;
-      } else if (width >= 768) {
-        tooltip.value.x = point.x - 300;
-        tooltip.value.y = point.y - 50;
-      }
+      //
+      // if (width >= 1920) {
+      //   tooltip.value.x = point.x + 107;
+      //   tooltip.value.y = point.y + 105;
+      // } else if(width >= 1600){
+      //   tooltip.value.x = point.x + 100;
+      //   tooltip.value.y = point.y + 100;
+      // } else if (width >= 1439) {
+      //   tooltip.value.x = point.x - 10;
+      //   tooltip.value.y = point.y + 50;
+      // } else if (width >= 1280) {
+      //   tooltip.value.x = point.x - 100;
+      //   tooltip.value.y = point.y - 100;
+      // } else if (width >= 1024) {
+      //   tooltip.value.x = point.x - 100;
+      //   tooltip.value.y = point.y + 20;
+      // } else if (width >= 768) {
+      //   tooltip.value.x = point.x - 300;
+      //   tooltip.value.y = point.y - 50;
+      // }
 
       // if(window.innerWidth < 1600){
-      //   tooltip.value.x = point.x - 40;
-      //   tooltip.value.y = point.y + 40;
+        tooltip.value.x = point.x - 40;
+        tooltip.value.y = point.y + 40;
       // } else
       // } else if(window.innerWidth >= 1439){
       //   tooltip.value.x = point.x + 1000;
@@ -368,24 +373,43 @@ export default {
         return 5.5;
       }
     };
-
     const slideNext = () => {
-      console.log("fak")
-      swiperRef.value.swiper.slideNext();
+      if (swiperRef.value && swiperRef.value.swiper) {
+        swiperRef.value.swiper.slideNext();
+      }
     };
+
 
     const slidePrev = () => {
-      console.log("prev")
-      swiperRef.value.swiper.slidePrev();
+      if (swiperRef.value && swiperRef.value.swiper) {
+        swiperRef.value.swiper.slidePrev();
+      }
+    }
+
+    const adjustSvgSize = () => {
+      const mapSvgElement = mapSvg.value;
+      const map1SvgElement = map1Svg.value;
+
+      if (mapSvgElement && map1SvgElement) {
+        const width = mapSvgElement.clientWidth;
+        const height = mapSvgElement.clientHeight;
+
+        mapSvgElement.setAttribute('width', width);
+        mapSvgElement.setAttribute('height', height);
+        map1SvgElement.setAttribute('width', width);
+        map1SvgElement.setAttribute('height', height);
+      }
     };
 
 
-
-
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', adjustSvgSize);
+    });
     onMounted(() => {
       extractYears();
       document.addEventListener('click', handleClickOutside);
-
+      adjustSvgSize();
+      window.addEventListener('resize', adjustSvgSize);
       const titles = [
         { el: addTitleRef1.value, text: "Наши продукты" },
         { el: addTitleRef2.value, text: "Таймлайн" },
@@ -458,7 +482,8 @@ export default {
       cursorCeo,
       cursorUser,
       cursorDev,
-      cursorUserMobile
+      cursorUserMobile,
+      adjustSvgSize
     };
   },
 };
@@ -628,13 +653,13 @@ export default {
             </div>
             <div class="fourth-block__map">
               <div v-if="!mapUsers">
-                <svg viewBox="0 0 1339 712" xmlns="http://www.w3.org/2000/svg">
-                  <image href="./assets/img/map.svg" x="0" y="0" width="1339" height="712"/>
+                <svg ref="mapSvg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map.svg" x="0" y="0" width="1000" height="500"/>
                   <g v-for="(point, index) in userPoints" :key="index">
                     <!-- Большой круг для захвата событий -->
                     <rect
-                        :x="point.x - 400"
-                        :y="point.y - 400"
+                        :x="point.x - 40"
+                        :y="point.y - 40"
                         width="20"
                         height="20"
                         class="city"
@@ -662,8 +687,8 @@ export default {
                 </div>
               </div>
               <div v-else>
-                <svg viewBox="0 0 1339 711" xmlns="http://www.w3.org/2000/svg">
-                  <image href="./assets/img/map1.svg" x="0" y="0" width="1339" height="712"/>
+                <svg ref="map1Svg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                  <image href="./assets/img/map1.svg" x="0" y="0" width="1000" height="500"/>
                 </svg>
               </div>
             </div>

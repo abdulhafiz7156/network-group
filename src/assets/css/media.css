@@ -189,7 +189,7 @@
     }
 
     .swiper-button-next, .swiper-button-prev {
-        top: 73.8%;
+        top: 79.3% !important
     }
 }
 
@@ -296,7 +296,7 @@
     }
 
     .swiper-button-next, .swiper-button-prev {
-        display: none;
+        display: none !important;
     }
 
 
