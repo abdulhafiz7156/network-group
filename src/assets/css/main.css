@@ -44,7 +44,7 @@
 }
 
 .first-block__text-div__texts button:hover {
-    box-shadow: 0 0 0 2px #050B16, 0 0 0 4px #6054FF;
+    box-shadow: 0 0 0 2px var(--background-color), 0 0 0 4px #6054FF;
     background: #6A5EFF;
 }
 
@@ -418,7 +418,7 @@
 
 .fourth-block__map__text {
     position: absolute;
-    background: #050B16;
+    background: var(--background-color);
     width: 219px;
     height: 55px;
     padding: 18px 30px 20px 30px;
@@ -447,7 +447,7 @@
     width: 120px;
     text-align: center;
     display: flex;
-    border: 1px solid #050B16;
+    border: 1px solid var(--background-color);
     align-items: center;
     font-size: 13px;
     font-family: 'JetBrains Mono';
@@ -748,7 +748,7 @@
 }
 
 .vacancy-block-grid__card:hover {
-    background: #0F1520;
+    background: var(--background-alt-color);
     border: 1px solid #242C39;
 }
 
@@ -803,7 +803,7 @@
     right: 0;
     width: 40%;
     height: 100%;
-    background: #0A101B;
+    background: var(--background-alt-color);
     color: #fff;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
@@ -906,7 +906,7 @@ footer {
 }
 
 .sidebar__texts button:hover {
-    box-shadow: 0 0 0 2px #050B16, 0 0 0 4px #6054FF;
+    box-shadow: 0 0 0 2px var(--background-color), 0 0 0 4px #6054FF;
     background: #6A5EFF;
 }
 
@@ -921,6 +921,6 @@ footer {
     width: 100%;
     height: 100%;
     filter: blur(20px);
-    background-color: rgba(10, 16, 27, 0.3);
+    background-color: var(--background-overlay-color);
     z-index: 500;
 }
